@@ -1,0 +1,169 @@
+/* src/ZohoSignIn.module.css */
+
+.container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: sans-serif;
+    padding: 20px;
+     /* Set the background image here: */
+     background-image: url('../../Images/Admin.jpg');
+     background-size: cover; /* Cover the entire container */
+     background-position: center; /* Center the image */
+     background-repeat: no-repeat; /* Do not repeat the image */
+   
+  }
+  
+  
+  .staunchLogo {
+    max-width: 60px;
+    margin-bottom: 20px;
+  }
+  
+  .signInForm {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    /* margin-left: -70px; Move the form slightly to the left */
+  }
+  
+  .title {
+    font-size: 2rem;
+    color: #343a40; /* Default color (black) */
+    margin-bottom: 40px;
+    text-align: center;
+    margin-top: 0;
+  }
+  
+  .starPart {
+    color: black; /* or #343a40 (dark gray) */
+  }
+  
+  .title {
+    font-size: 1.8rem;
+    color: #db2837; /* Default color (black) */
+    margin-bottom: 10px;
+    text-align: left;
+    margin-top: 0;
+  }
+  
+  .accessText {
+    font-size: 1rem;
+    color: #9a9898;
+    margin-bottom: 40px;
+    margin-top: 0;
+  }
+  
+  .inputGroup {
+    position: relative; /* For icon positioning */
+    margin-bottom: 20px;
+  }
+  
+  .input {
+    padding: 14px; /* Reduced padding */
+    padding-left: 50px; /* Increased space for the icon */
+    border: 1px solid #ced4da; /* Light border color */
+    border-radius: 4px;
+    font-size: 1rem;
+    color: #495057; /* Text color */
+    width: 100%;
+    box-sizing: border-box;
+    background-color: #f8f9fa; /* Light gray background for the input field */
+  }
+  
+  /* Style for the floating label effect */
+  .input::placeholder {
+    color: #6c757d; /* Style placeholder color as #6c757d */
+  }
+  
+  /* Icon styles */
+  .inputIcon {
+    position: absolute; /* Absolute position */
+    top: 14px; /* Top distance */
+    left: 10px; /* Increased left distance for more gap */
+    width: 20px; /* Icon size */
+    height: 20px;
+    pointer-events: none; /* Prevents from blocking the input */
+    color: #6c757d /* Placeholder Text Color */
+  }
+  
+  /* Make the eye icon smaller */
+  .passwordToggle {
+    position: absolute;
+    top: 14px;
+    right: 5px;
+    cursor: pointer;
+    color: #6c757d /* Placeholder Text Color */;
+    padding: 5px; /* Space around */
+    z-index: 1; /* On top */
+  }
+  
+  /* Style for error messages */
+  .error {
+    color: red; /* Red color for errors */
+    margin-top: 2px; /* Spacing between input and error */
+    font-size: 0.9rem;
+    text-align: center; /* Make the error messages */
+  }
+  .signInButton {
+    background-color: #1da1f2; /* Dark blue */
+    color: white;
+    padding: 14px 20px;
+    border: none;
+    border-radius: 40px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    width: 100%;
+    margin-bottom: 20px;
+    transition: background-color 0.2s ease;
+  }
+  
+  .signInButton:hover {
+    background-color: #0c7cd5;
+  }
+  
+  
+  .keepSignedIn {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+    color: #495057;
+  }
+  
+  .keepSignedIn label {
+    display: flex;
+    align-items: center;
+  }
+  
+  .keepSignedIn input[type="checkbox"] {
+    margin-right: 5px;
+  }
+  
+  .forgotPassword {
+    color: #3f51b5;
+    text-decoration: none;
+  }
+  
+  
+  .signUpLink {
+    margin-top: 30px;
+    text-align: center;
+    font-size: 0.9rem;
+    color: #495057;
+  }
+  
+  .signUpLink a {
+    color: #3f51b5;
+    text-decoration: none;
+  }
+  
+  
