@@ -143,7 +143,7 @@ const Dashboard = () => {
 
         {/* Main Content Area */}
         <div className={styles.contentArea}>
-          <h1 className={styles.dashboardTitle}>Payroll</h1>
+          <h1 className={styles.dashboardTitle}>Staunch Payroll</h1>
 
           <div className={styles.kpiSection}>
             <div className={styles.kpiCard}>
