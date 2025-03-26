@@ -1,17 +1,19 @@
 import React, { useState, useEffect, lazy, Suspense } from "react";
-import Sidebar from "./Sidebar"; // Adjust path carefully
+import Sidebar from "./Sidebar";
 import styles from "./Dashboard.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faSearch,
   faBell,
   faCog,
-  faUser,
   faUsers,
   faMoneyBillAlt,
   faCalendarAlt,
   faFileAlt,
   faBriefcase,
+  faUser,  
+  faArrowUp,
+  faArrowDown,
 } from "@fortawesome/free-solid-svg-icons";
 import {
   Chart as ChartJS,
@@ -27,7 +29,6 @@ import {
   BarController,
 } from "chart.js";
 
-// ENSURE ChartJS.register IS AT TOP
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -41,7 +42,6 @@ ChartJS.register(
   BarController
 );
 
-//Dynamically load charts
 const Line = lazy(() =>
   import("react-chartjs-2").then((mod) => ({ default: mod.Line }))
 );
@@ -52,22 +52,47 @@ const Bar = lazy(() =>
 const Dashboard = () => {
   const [payrollTrendsData, setPayrollTrendsData] = useState(null);
   const [departmentPayrollData, setDepartmentPayrollData] = useState(null);
+  const [loading, setLoading] = useState(true);
 
-  const employeeCount = 150;
-  const totalPayroll = 750000;
+  const employeeCount = 0;
+  const totalPayroll = 1000000;
   const lastPayrollDate = new Date()
     .toLocaleDateString("en-GB")
     .replace(/\//g, "-");
 
+  // Simulated Comparison Data (replace with real data)
+  const payrollComparison = {
+    vsLastMonth: 0.05, // +5%
+    vsLastQuarter: -0.02, // -2%
+  };
+
   useEffect(() => {
-    console.log("Dashboard useEffect called"); // Debugging log
-
-    const fetchData = async () => {
+    const fetchPayrollSummary = async () => {
       try {
-        console.log("Fetching data..."); // Debugging log
+        const response = await fetch("/api/payrollSummary"); // Adjust the endpoint as per your backend
+        const data = await response.json();
+        setPayrollSummary(data);
+      } catch (error) {
+        console.error("Error fetching payroll summary from the database:", error);
+      }
+    };
 
-        // Simulate an API call delay
-        await new Promise((resolve) => setTimeout(resolve, 500));
+    fetchPayrollSummary();
+  }, []);
+
+  const [payrollSummary, setPayrollSummary] = useState({
+    totalPayroll: 0,
+    averageSalary: 0,
+    employeesPaid: 0,
+    taxesWithheld: 0,
+    deductions: 0,
+  });
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true);
+      try {
+        await new Promise((resolve) => setTimeout(resolve, 500)); // Simulate API call delay
 
         const trendsData = {
           labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
@@ -105,20 +130,22 @@ const Dashboard = () => {
           ],
         };
 
-        console.log("trendsData:", trendsData); // Debugging log
-        console.log("deptData:", deptData); // Debugging log
-
         setPayrollTrendsData(trendsData);
         setDepartmentPayrollData(deptData);
       } catch (error) {
         console.error("Error fetching data:", error);
+      } finally {
+        setLoading(false);
       }
     };
 
     fetchData();
   }, []);
 
-  console.log("Dashboard component rendering"); // Debugging log
+  const formatPercentage = (value) => {
+    const formatted = (value * 100).toFixed(1);
+    return formatted + "%";
+  };
 
   return (
     <div className={styles.dashboardContainer}>
@@ -136,112 +163,187 @@ const Dashboard = () => {
             <FontAwesomeIcon icon={faBell} className={styles.icon} />
             <FontAwesomeIcon icon={faCog} className={styles.icon} />
             <div className={styles.profileIcon}>
-              <FontAwesomeIcon icon="fa-solid fa-user" className={styles.icon} />
-            </div>
+          {console.log("Rendering user icon")}
+          <>
+          <FontAwesomeIcon
+            icon={faUser}
+            style={{ color: "#098aec" }}
+            className={styles.icon}
+          />
+          </>
+        </div>
           </div>
         </div>
 
         {/* Main Content Area */}
         <div className={styles.contentArea}>
-          <h1 className={styles.dashboardTitle}>Staunch Payroll</h1>
+          <h1 className={styles.dashboardTitle}>Payroll</h1>
 
-          <div className={styles.kpiSection}>
-            <div className={styles.kpiCard}>
-              <FontAwesomeIcon icon={faUsers} className={styles.kpiIcon} />
-              <h3>{employeeCount}</h3>
-              <p>Total Employees</p>
-            </div>
+          {loading ? (
+            <p>Loading dashboard data...</p>
+          ) : (
+            <>
+              {/* KPI Section with Data Cards and Comparisons */}
+                      <div className={styles.kpiSection}>
+                      <div className={styles.kpiCard}>
+                        <FontAwesomeIcon icon={faUsers} 
+                        style={{ color: "#098aec" }}
+                        className={styles.kpiIcon} />
+                        <h3>{employeeCount}</h3>
+                        
+                        <p>Total Employees</p>
+                      </div>
 
-            <div className={styles.kpiCard}>
-              <FontAwesomeIcon
-                icon={faMoneyBillAlt}
-                className={styles.kpiIcon}
-              />
-              <h3>Rs.{totalPayroll.toLocaleString()}</h3>
-              <p>Total Payroll</p>
-            </div>
+                      <div className={styles.kpiCard}>
+                        <FontAwesomeIcon
+                        icon={faMoneyBillAlt}
+                        
+                        className={styles.kpiIcon}
+                        />
+                        <h3>Rs. {totalPayroll.toLocaleString()}</h3>
+                        <p>
+                        Total Payroll
+                        {/* <span className={styles.comparison} style={{ marginLeft: "10px" }}>
+                          {payrollComparison.vsLastMonth >= 0 ? (
+                          <FontAwesomeIcon
+                            icon={faArrowUp} style={{color:"black"}}
+                            className={styles.positiveTrend}
+                          />
+                          ) : (
+                          <FontAwesomeIcon
+                            icon={faArrowDown}
+                            className={styles.negativeTrend}
+                          />
+                          )}
+                          {formatPercentage(payrollComparison.vsLastMonth)} vs Last
+                          Month
+                        </span> */}
+                        </p>
+                      </div>
 
-            <div className={styles.kpiCard}>
-              <FontAwesomeIcon
-                icon={faCalendarAlt}
-                className={styles.kpiIcon}
-              />
-              <h3>{lastPayrollDate}</h3>
-              <p>Last Payroll Date</p>
-            </div>
-          </div>
+                      <div className={styles.kpiCard}>
+                        <FontAwesomeIcon
+                        icon={faCalendarAlt}
+                        style={{ color: "red" }}
+                        className={styles.kpiIcon}
+                        />
+                        <h3>{lastPayrollDate}</h3>
+                        <p>Last Payroll Date</p>
+                      </div>
+                      </div>
 
-          <div className={styles.chartSection}>
-            <div className={styles.chartContainer}>
-              <h2>Payroll Trends</h2>
-              {payrollTrendsData ? (
-                <Suspense fallback={<div>Loading Payroll Trends...</div>}>
-                  {console.log("Rendering Line chart")}
-                  <Line data={payrollTrendsData} />
-                </Suspense>
-              ) : (
-                <p>Loading Payroll Trends...</p>
-              )}
-            </div>
+                      {/* Chart Section */}
+              <div className={styles.chartSection}>
+                <div className={styles.chartContainer}>
+                  <h2>Payroll Trends</h2>
+                  {payrollTrendsData ? (
+                    <Suspense fallback={<div>Loading Payroll Trends...</div>}>
+                      <Line data={payrollTrendsData} />
+                    </Suspense>
+                  ) : (
+                    <p>No Payroll Trends data available.</p>
+                  )}
+                </div>
 
-            <div className={styles.chartContainer}>
-              <h2>Payroll by Department</h2>
-              {departmentPayrollData ? (
-                <Suspense
-                  fallback={<div>Loading Payroll by Department...</div>}
-                >
-                  {console.log("Rendering Bar chart")}
-                  <Bar data={departmentPayrollData} />
-                </Suspense>
-              ) : (
-                <p>Loading Payroll by Department...</p>
-              )}
-            </div>
-          </div>
+                <div className={styles.chartContainer}>
+                  <h2>Payroll by Department</h2>
+                  {departmentPayrollData ? (
+                    <Suspense
+                      fallback={<div>Loading Payroll by Department...</div>}
+                    >
+                      <Bar data={departmentPayrollData} />
+                    </Suspense>
+                  ) : (
+                    <p>No Payroll by Department data available.</p>
+                  )}
+                </div>
+              </div>
 
-          <div className={styles.reportSection}>
-            <h2>Payroll Reports</h2>
-            <ul className={styles.reportList}>
-              <li>
-                <FontAwesomeIcon
-                  icon={faFileAlt}
-                  className={styles.reportIcon}
-                />
-                <a href="#">Monthly Payroll Report</a>
-              </li>
-              <li>
-                <FontAwesomeIcon
-                  icon={faFileAlt}
-                  className={styles.reportIcon}
-                />
-                <a href="#">Yearly Payroll Summary</a>
-              </li>
-              <li>
-                <FontAwesomeIcon
-                  icon={faFileAlt}
-                  className={styles.reportIcon}
-                />
-                <a href="#">Tax Compliance Report</a>
-              </li>
-            </ul>
-          </div>
+              {/* Summary Table Section */}
+              <div className={styles.summaryTable}>
+                <h2>Payroll Summary</h2>
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Metric</th>
+                      <th>Value (Rs.)</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Total Payroll</td>
+                      <td>{payrollSummary.totalPayroll.toLocaleString()}</td>
+                    </tr>
+                    <tr>
+                      <td>Average Salary</td>
+                      <td>{payrollSummary.averageSalary.toLocaleString()}</td>
+                    </tr>
+                    <tr>
+                      <td>Employees Paid</td>
+                      <td>{payrollSummary.employeesPaid}</td>
+                    </tr>
+                    <tr>
+                      <td>Taxes Withheld</td>
+                      <td>{payrollSummary.taxesWithheld.toLocaleString()}</td>
+                    </tr>
+                    <tr>
+                      <td>Total Deductions</td>
+                      <td>{payrollSummary.deductions.toLocaleString()}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
 
-          <div className={styles.quickActionsSection}>
-            <h2>Quick Actions</h2>
-            <div className={styles.actionButtons}>
-              <button>
-                <FontAwesomeIcon
-                  icon={faBriefcase}
-                  className={styles.actionIcon}
-                />
-                Run Payroll
-              </button>
-              <button>
-                <FontAwesomeIcon icon={faUsers} className={styles.actionIcon} />
-                Add New Employee
-              </button>
-            </div>
-          </div>
+              {/* Report Section */}
+              <div className={styles.reportSection}>
+                <h2>Payroll Reports</h2>
+                <ul className={styles.reportList}>
+                  <li>
+                    <FontAwesomeIcon
+                      icon={faFileAlt}
+                      className={styles.reportIcon}
+                    />
+                    <a href="#">Monthly Payroll Report</a>
+                  </li>
+                  <li>
+                    <FontAwesomeIcon
+                      icon={faFileAlt}
+                      className={styles.reportIcon}
+                    />
+                    <a href="#">Yearly Payroll Summary</a>
+                  </li>
+                  <li>
+                    <FontAwesomeIcon
+                      icon={faFileAlt}
+                      className={styles.reportIcon}
+                    />
+                    <a href="#">Tax Compliance Report</a>
+                  </li>
+                </ul>
+              </div>
+
+              {/* Quick Actions Section */}
+              <div className={styles.quickActionsSection}>
+                <h2>Quick Actions</h2>
+                <div className={styles.actionButtons}>
+                  <button>
+                    <FontAwesomeIcon
+                      icon={faBriefcase}
+                      className={styles.actionIcon}
+                    />
+                    Run Payroll
+                  </button>
+                  <button>
+                    <FontAwesomeIcon
+                      icon={faUsers}
+                      className={styles.actionIcon}
+                    />
+                    Add New Employee
+                  </button>
+                </div>
+              </div>
+            </>
+          )}
         </div>
       </div>
     </div>
