@@ -14,8 +14,6 @@ import { faFileAlt } from '@fortawesome/free-solid-svg-icons';
 import { faCog } from '@fortawesome/free-solid-svg-icons';
 import { faQuestionCircle } from '@fortawesome/free-solid-svg-icons';
 
-import { MdOutlineSpaceDashboard } from "react-icons/md";
-import { GoOrganization } from "react-icons/go";
 
 const Sidebar = () => {
   return (
@@ -29,12 +27,12 @@ const Sidebar = () => {
       <nav className={styles.nav}>
         <ul className={styles.navList}>
           <li className={`${styles.navItem} ${styles.navItemSelected}`}>
-            < MdOutlineSpaceDashboard  className={styles.navIcon} />
+            <FontAwesomeIcon icon={faTachometerAlt} className={styles.navIcon} />
             <span className={styles.navItemSpan}>Dashboard</span>
           </li>
           <li className={styles.navItem}>
-            <GoOrganization className={styles.navIcon} />
-            <span className={styles.navItemSpan}>Organization </span>
+            <FontAwesomeIcon icon={faBuilding} className={styles.navIcon} />
+            <span className={styles.navItemSpan}>Organization Profile</span>
           </li>
           <li className={styles.navItem}>
             <FontAwesomeIcon icon={faUsers} className={styles.navIcon} />
@@ -71,7 +69,9 @@ const Sidebar = () => {
           </li>
         </ul>
       </nav>
-    </div> 
+    </div>
+    
+    
   );
 };
 

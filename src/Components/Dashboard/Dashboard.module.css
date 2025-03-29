@@ -10,14 +10,71 @@
   flex-direction: column;
   background-color: #ffffff;
   overflow: hidden;
-  position: relative;
 }
+
+.topSection {
+  background-color: #faf9ff;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  height: 20px; 
+}
+
+.searchBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Ensures the search icon is at the right end */
+  border-radius: 10px; /* Added right radius */
+  padding: 0; /* Removed padding to decrease height */
+  background-color: #f0f0f0;
+  width: 270px;
+}
+
+.searchBar input {
+  border: none;
+  outline: none;
+  padding: 3px; /* Reduced padding for smaller height */
+  font-size: 1rem;
+  background-color: #f0f0f0;
+  text-align: center;
+}
+
+.searchIcon {
+  background-color: #4f98ff;
+  color: #ffffff;
+  margin-left: 15px; /* Adjusted margin for better alignment */
+  max-width: 200px;
+  padding: 10px; /* Reduced padding for smaller height */
+  font-weight: bold;
+  border-radius: 7px;
+}
+
+.topSectionIcons {
+  display: flex;
+  gap: 20px;
+  margin-right: 20px;
+  align-items: center;  /* Vertically align the icons */
+}
+
+.icon {
+  font-size: 1.3rem;
+  color: #000000;
+  cursor: pointer;
+}
+
+.profileIcon {
+  cursor: pointer;
+}
+
+
+/* Styles for the HR Payroll Dashboard content */
 
 .contentArea {
   padding: 20px;
   overflow-y: auto;
-  height: calc(100vh - 100px);
-  /* Adjust based on topSection height */
+  height: calc(100vh - 100px); /* Adjust based on topSection height */
 }
 
 .dashboardTitle {
@@ -26,7 +83,7 @@
   color: #333;
   text-align: center;
   margin-top: 10px;
-}
+  }
 
 /* KPI Section */
 .kpiSection {
@@ -48,15 +105,13 @@
 .kpiCard:hover {
   outline: 1px solid #4f98ff;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  transform: scale(1.02);
-  /* Reduced zoom-in effect */
-  transition: transform 0.2s ease, outline 0.2s ease, box-shadow 0.2s ease;
+  transform: scale(1.02); /* Reduced zoom-in effect */
+  transition: transform 0.2s ease, outline 0.2s ease, box-shadow 0.2s ease; 
 }
 
 .kpiIcon {
   font-size: 2rem;
-  color: #4caf50;
-  /* Green */
+  color: #4CAF50; /* Green */
   margin-bottom: 10px;
 }
 
@@ -83,8 +138,7 @@
   border-radius: 8px;
   padding: 20px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  width: 48%;
-  /* Adjust as needed */
+  width: 48%; /* Adjust as needed */
 }
 
 .chartContainer h2 {
@@ -99,8 +153,7 @@
   background-color: #fff;
   border-radius: 12px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-  /* Ensures rounded corners are respected */
+  overflow: hidden; /* Ensures rounded corners are respected */
 }
 
 .summaryTable h2 {
@@ -110,8 +163,7 @@
   color: #333;
   background-color: #f9f9f9;
   border-bottom: 1px solid #eee;
-  text-align: left;
-  /* Align heading to the left */
+  text-align: left; /* Align heading to the left */
 }
 
 .summaryTable table {
@@ -129,8 +181,7 @@
 
 .summaryTable th {
   background-color: #f2f2f2;
-  font-weight: 600;
-  /* Semi-bold for header */
+  font-weight: 600; /* Semi-bold for header */
 }
 
 /* Style the last row to remove the border-bottom */
@@ -171,8 +222,7 @@
 
 .reportIcon {
   margin-right: 8px;
-  color: #007bff;
-  /* Blue */
+  color: #007bff; /* Blue */
 }
 
 .reportList a {
@@ -197,8 +247,7 @@
 }
 
 .actionButtons button {
-  background-color: #007bff;
-  /* Blue */
+  background-color: #007bff; /* Blue */
   color: #fff;
   border: none;
   border-radius: 5px;
