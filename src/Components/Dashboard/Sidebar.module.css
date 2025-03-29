@@ -1,81 +1,82 @@
 /* Sidebar.module.css */
 
 .sidebar {
-  width: 230px;
-  background-color: #0b005a; /* Dark blue background */
-  color: #FFFFFF; /* White text */
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  box-sizing: border-box;
-  overflow: hidden; /* Hide scrollbar on sidebar container */
-}
-
-.logoContainer {
-  background-color: black;
-  padding: 10px;
-  margin-bottom: 20px;
-  height: 30px;
-  width: 230px;
-}
-
-.logo {
-  font-size: 1.5rem;
-  font-weight: bold;
-  text-align: center;
-  color: #FFFFFF;
-}
-
-.nav {
-  padding: 0 20px; /* Add padding to the navigation */
-  position: Sticky;  
-  /* top: 0;            
-  /* left: 0;           
-  width: 100%; /* Ensure it takes full width within the sidebar */
-  height: auto; /* Allow content to determine height */
-  overflow-y: auto; /* Scroll if content overflows */
-  scrollbar-width: none; /* Hide scrollbar for Firefox */
-  -ms-overflow-style: none; /* Hide scrollbar for IE and Edge */
-}
-
-/* Hide scrollbar for Chrome, Safari and Opera */
-.nav::-webkit-scrollbar {
-  display: none;
-}
-
-.navList {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.navItem {
-  display: flex;
-  /* align-items: left; */
-  padding: 10px;
-  margin-bottom: 5px;
-  cursor: pointer;
-  border-radius: 5px;
-  transition: background-color 0.2s ease;
-}
-
-/* .navItem:hover {
-  background-color: rgba(255, 255, 255, 0.2);
-} */
-
-.navItemSelected {
-  background-color: #4f98ff; /* Highlight selected item */
-  font-weight: bold;
-  width: 95%; /* Increase width of selected item */
-  color: #FFFFFF;
-}
-
-.navIcon {
-  margin-right: 15px; /* Space between icon and text */
-  font-size: 1.2rem;
-  font-weight: 100;
-}
-
-.navItemSpan {
-  font-size: 1rem;
-}
+    width: 230px;
+    background-color: #0b005a; /* Dark blue background */
+    color: #FFFFFF; /* White text */
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    overflow: hidden; /* Hide scrollbar on sidebar container */
+  }
+  
+  .logoContainer {
+    background-color: black;
+    padding: 10px;
+    margin-bottom: 20px;
+    height: 30px;
+    width: 230px;
+  }
+  
+  .logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+    color: #FFFFFF;
+  }
+  
+  .nav {
+    padding: 0 20px; /* Add padding to the navigation */
+    position: Sticky;  
+    /* top: 0;            
+    /* left: 0;           
+    width: 100%; /* Ensure it takes full width within the sidebar */
+    height: auto; /* Allow content to determine height */
+    overflow-y: auto; /* Scroll if content overflows */
+    scrollbar-width: none; /* Hide scrollbar for Firefox */
+    -ms-overflow-style: none; /* Hide scrollbar for IE and Edge */
+  }
+  
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  .nav::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .navList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .navItem {
+    display: flex;
+    /* align-items: left; */
+    padding: 10px;
+    margin-bottom: 5px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.2s ease;
+  }
+  
+  /* .navItem:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+  } */
+  
+  .navItemSelected {
+    background-color: #4f98ff; /* Highlight selected item */
+    font-weight: bold;
+    width: 95%; /* Increase width of selected item */
+    color: #FFFFFF;
+  }
+  
+  .navIcon {
+    margin-right: 15px; /* Space between icon and text */
+    font-size: 1.2rem;
+    font-weight: 100;
+  }
+  
+  
+  .navItemSpan {
+    font-size: 1rem;
+  }
