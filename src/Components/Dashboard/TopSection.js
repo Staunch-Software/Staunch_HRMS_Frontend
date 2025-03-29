@@ -192,7 +192,7 @@ const TopSection = () => {
                     isOpen={activeContainer === "notifications"}
                     onClose={handleCloseContainer}
                 >
-                    <h2>No Notifications</h2>
+                    <h2>No Notification</h2>
                     {/* <p>This is where notifications will be displayed.</p> */}
                 </SlidingContainer>
             )}
