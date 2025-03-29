@@ -15,7 +15,7 @@ const defaultProfilePhoto = ProfilePhoto;
 const userProfileData = {
     name: "Software",
     email: "software@staunchtec.com",
-    userId: "STC-00001",
+    userId: "STC - 00001",
 };
 
 const SlidingContainer = ({ isOpen, onClose, children }) => {
