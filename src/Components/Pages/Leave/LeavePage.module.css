@@ -1,0 +1,68 @@
+/* LeavePage.module.css */
+
+.leaveLogPage {
+    top:10px;
+}
+
+.mainTitle {
+    font-size: 2.2rem;
+    margin-top:0;
+    color: #333;
+    font-weight: 500;
+    font-family: 'Arial', sans-serif;
+}
+
+.leaveNav {
+    margin-top: -5px;
+    margin-bottom: 15px;
+    position: relative;
+}
+
+.leaveNavList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+    position: relative;
+    z-index: 1;
+}
+
+
+
+.leaveNavLink {
+    display: block;
+    padding: 10px 15px;
+    text-decoration: none;
+    color: #555; 
+    white-space: nowrap;
+    position: relative;
+    transition: color 0.3s ease, background-color 0.3s ease;
+    z-index: 2;
+    border-radius: 7px 7px 5px 5px;
+    font-size: 1rem;
+    cursor: pointer; 
+}
+
+.leaveNavLink:hover:not(.activeLink) {
+    color: #969494; 
+    /* background-color: rgba(0, 0, 0, 0.03); */
+}
+
+.activeLink {
+    color: #fff; 
+    background-color: #0c70fc; 
+    box-shadow: none;
+}
+
+
+.navIndicator {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #0c70fc;
+    z-index: 1;
+}

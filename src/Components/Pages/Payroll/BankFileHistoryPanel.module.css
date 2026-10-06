@@ -1,0 +1,90 @@
+.container {
+    margin-top: 10px;
+}
+
+.empty {
+    color: #868e96;
+    font-size: 0.9rem;
+    margin: 6px 0 0 0;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    font-size: 0.9rem;
+}
+
+.table th,
+.table td {
+    padding: 8px 12px;
+    border-bottom: 1px solid #e9ecef;
+    text-align: left;
+}
+
+.table th {
+    background: #f8f9fa;
+    font-weight: 600;
+    color: #495057;
+}
+
+.versionBadge {
+    display: inline-block;
+    background: #e7e0fb;
+    color: #4c2a85;
+    border-radius: 10px;
+    padding: 2px 8px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.downloadButton {
+    background: none;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    padding: 5px 12px;
+    cursor: pointer;
+}
+
+.downloadButton:hover {
+    background: #f8f9fa;
+}
+
+.downloadButton:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.iciciPanel {
+    padding: 8px 12px 12px 12px;
+    background: #f8f9fa;
+}
+
+.iciciSubmitRow {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.otpInput {
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    padding: 5px 8px;
+    width: 140px;
+}
+
+.iciciMessage {
+    color: #2b6cb0;
+    font-size: 0.85rem;
+    margin: 6px 0 0 0;
+}
+
+.iciciError {
+    color: #c0392b;
+    font-size: 0.85rem;
+    margin: 6px 0 0 0;
+}
+
+.iciciStatusBlock {
+    margin-top: 8px;
+}

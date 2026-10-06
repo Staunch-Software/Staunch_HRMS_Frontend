@@ -1,0 +1,219 @@
+.container {
+  padding: 15px 20px;
+  background-color: #fff;
+  font-family: 'Arial', sans-serif;
+}
+
+.headerContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.2rem;
+}
+
+.title {
+  font-size: 1.8rem;
+  color: #333;
+  margin: 0;
+  font-weight: 600;
+}
+
+.datePickerContainer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.datePickerLabel {
+  font-size: 0.875rem;
+  color: #495057;
+  font-weight: 500;
+  margin-bottom: 0;
+  white-space: nowrap;
+}
+
+.datePicker {
+  font-family: inherit;
+  padding: 10px 12px;
+  border: 1px solid #ced4da;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  background-color: #fff;
+  color: #495057;
+  min-height: 40px;
+  line-height: 1.5;
+  box-sizing: border-box;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+  min-width: 170px;
+}
+
+.datePicker:focus {
+  border-color: #86b7fe;
+  box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+  outline: none;
+}
+
+.datePicker:hover {
+  border-color: #adb5bd;
+}
+
+.divider {
+  border: none;
+  height: 1px;
+  background-color: #e9ecef;
+  margin-top: 5px;
+  margin-bottom: 25px;
+}
+
+.tableContainer {
+  overflow-x: auto;
+  width: 100%;
+  scrollbar-width: none;
+}
+
+.tableContainer::-webkit-scrollbar {
+  display: none;
+}
+
+.leaveLogTable {
+  display: grid;
+  grid-template-columns:
+    40px
+    minmax(170px, 1.5fr)
+    minmax(110px, 1fr)
+    minmax(140px, 1.5fr)
+    minmax(90px, 1fr)
+    minmax(100px, 1fr)
+    minmax(60px, 0.5fr)
+    minmax(100px, 1fr)
+    minmax(100px, 1fr)
+    minmax(110px, 1fr)
+    minmax(140px, 1fr)
+    minmax(80px, auto);
+  gap: 0;
+  width: max-content;
+  min-width: 100%;
+  border-top: 1px solid #e0e0e0;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.tableRow {
+  display: contents;
+}
+
+.tableRow:hover > .tableCell:not(.sticky) {
+  background-color: #f9f9f9;
+}
+
+.tableRow:hover > .sticky {
+  background-color: #fff;
+}
+
+.tableHeader:hover > .sticky {
+  background-color: #f8f9fa;
+}
+
+.tableCell {
+  padding: 10px 12px;
+  display: flex;
+  align-items: center;
+  font-size: 0.875rem;
+  color: #495057;
+  border-bottom: 1px solid #e9ecef;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.leaveLogTable > .tableRow:last-child > .tableCell {
+  border-bottom: none;
+}
+
+.tableHeader > .tableCell {
+  background-color: #f8f9fa;
+  font-weight: 600;
+  color: #495057;
+  border-bottom: 2px solid #dee2e6;
+  position: sticky;
+  top: 0;
+  z-index: 5;
+}
+
+.sticky {
+  position: sticky;
+  background-color: #fff;
+  z-index: 2;
+}
+
+.checkboxCell.sticky {
+  left: 0;
+  z-index: 3;
+  border-right: 1px solid #eee;
+}
+
+.employeeCell.sticky {
+  left: 40px;
+  z-index: 4;
+  border-right: 1px solid #eee;
+}
+
+.tableHeader > .sticky {
+  background-color: #f8f9fa;
+  z-index: 6;
+}
+
+.tableHeader > .checkboxCell.sticky {
+  z-index: 7;
+}
+
+.tableHeader > .employeeCell.sticky {
+  z-index: 6;
+}
+
+.noItemsMessage {
+  padding: 30px 20px;
+  text-align: center;
+  color: #6c757d;
+  font-style: italic;
+  grid-column: 1 / -1;
+  border-bottom: none;
+}
+
+.statusCell {
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.statusApproved {
+  color: #198754;
+}
+
+.statusPending {
+  color: #ffc107;
+}
+
+.statusRejected {
+  color: #dc3545;
+}
+
+.actionLink {
+  background: none;
+  border: none;
+  padding: 0;
+  color: #007bff;
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: inherit;
+  font-family: inherit;
+  text-align: left;
+}
+
+.actionLink:hover {
+  color: #0056b3;
+}
+
+.actionLink:focus {
+  outline: 1px dotted #007bff;
+  outline-offset: 2px;
+}

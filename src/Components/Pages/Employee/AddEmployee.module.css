@@ -1,0 +1,184 @@
+.container {
+    padding: 25px 30px;
+    max-width: 800px;
+    margin: 20px auto;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 15px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 20px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* .stepperContainer {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    width: 80%;
+    margin: 20px auto 35px auto;
+    padding: 0 10px;
+    position: relative;
+}
+
+.stepItem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    flex: 1;
+    max-width: 150px;
+}
+
+.stepCircle {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 0.9rem;
+    margin-bottom: 8px;
+    border: 2px solid #ccc;
+    color: #aaa;
+    background-color: #fff;
+    z-index: 1;
+    position: relative;
+    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+
+.stepItem.completed .stepCircle {
+    background-color: #28a745;
+    border-color: #28a745;
+    color: #fff;
+}
+
+.stepItem.active .stepCircle {
+    border-color: #007bff;
+    color: #007bff;
+    background-color: #e7f3ff;
+}
+
+.stepIcon {
+    font-size: 1.1rem;
+}
+
+.stepLabel {
+    font-size: 0.85rem;
+    color: #aaa;
+    font-weight: 500;
+    max-width: 100px;
+    word-wrap: break-word;
+}
+
+.stepItem.active .stepLabel,
+.stepItem.completed .stepLabel {
+    color: #333;
+    font-weight: 600;
+}
+
+.stepItem:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    top: 16px;
+    left: calc(50% + 20px);
+    width: calc(100% - 40px);
+    height: 2px;
+    background-color: #ccc;
+    z-index: 0;
+    transform: translateY(-50%);
+}
+
+.stepItem.completed:not(:last-child)::after {
+    background-color: #28a745;
+} */
+
+.title {
+    font-size: 1.8rem;
+    color: #333;
+    margin: 0 0 15px 0;
+    text-align: center;
+    font-weight: 600;
+}
+
+.divider {
+    border: none;
+    height: 1px;
+    background-color: #e0e0e0;
+    margin-bottom: 30px;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.formRow {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    align-items: flex-start;
+}
+
+.formRow .formGroup {
+    flex: 1;
+    min-width: 180px;
+}
+
+.formGroup {
+    display: flex;
+    flex-direction: column;
+}
+
+.label {
+    margin-bottom: 6px;
+    font-weight: 600;
+    color: #444;
+    font-size: 0.9rem;
+}
+
+.requiredAsterisk {
+    color: rgb(238, 35, 35);
+    margin-left: 2px;
+    font-weight: bold;
+}
+
+.input, select.input {
+    padding: 10px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.input:focus, select.input:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.2);
+}
+
+.buttonGroup {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 25px;
+    padding-top: 15px;
+    border-top: 1px solid #eee;
+}
+
+.submitButton,
+.cancelButton {
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.submitButton:active, .cancelButton:active {
+    transform: translateY(1px);
+}

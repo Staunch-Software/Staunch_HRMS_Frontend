@@ -1,0 +1,251 @@
+/* src/Components/Pages/Employee/EmployeeList.module.css */
+
+.container {
+  padding: 10px;
+  background-color: #fff;
+}
+
+.headerContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem; /* Keep using rem for consistency */
+}
+
+.controlsContainer {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem; /* Keep using rem */
+}
+
+.titleContainer {
+  display: flex; /* Arrange title and count side-by-side */
+  align-items: baseline; /* Align text nicely */
+  gap: 0.5rem; /* Space between title and count */
+}
+
+.title {
+  font-size: 1.8rem; /* Keep using rem */
+  color: #333;
+  margin: 0;
+  font-weight: 500;;
+}
+
+.totalCount {
+  font-size: 1.1rem; /* Slightly smaller than title */
+  color: #666; /* Example color */
+  font-weight: normal;
+}
+
+
+.addButton {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 0.6rem 1.2rem; /* Keep using rem */
+  cursor: pointer;
+  font-size: 0.95rem; /* Keep using rem */
+  transition: background-color 0.2s ease, color 0.2s ease; /* Add color transition */
+}
+
+.addButton:hover {
+  background-color: #fff;
+  color: #007bff;
+  border: 1px solid #007bff; /* Add border on hover for visibility */
+}
+
+.divider {
+  border: none;
+  height: 1px;
+  background-color: #e0e0e0;
+  margin-top: 5px; /* Adjust if needed */
+  margin-bottom: 20px; /* Adjust if needed */
+}
+
+.iconButton {
+  background-color: #fff;
+  border: 1px solid lightgrey; /* Consider a more specific grey like #ccc or #ddd */
+  padding: 0.5rem; /* Keep using rem */
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #555;
+  border-radius: 4px;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease; /* Add border transition */
+  font-size: 1rem; /* Standardize font size (16px = 1rem) */
+}
+
+.iconButton:hover {
+  background-color: #f0f0f0;
+  color: #222;
+  border-color: #bbb; /* Slightly darker border on hover */
+}
+
+.iconButton:active {
+  background-color: #e0e0e0;
+}
+
+.employeeTable {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 20px 1fr repeat(4, 1fr);
+  gap: 0px;
+  background-color: #fff;
+  border-top: 1px solid #e0e0e0;
+  border-bottom: 1px solid #e0e0e0;
+  border-radius: 0px;
+}
+
+.tableRow {
+  display: contents;
+}
+
+/* Add hover effect */
+.tableRow:hover > .tableCell { /* Target cells within the hovered conceptual row */
+  background-color: #f5f5f5;
+}
+
+.tableCell {
+  padding: 12px 15px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 0.9rem;
+  color: #333;
+  border-bottom: 1px solid #e0e0e0; /* Horizontal line */
+  /* No border-right */
+}
+
+/* Remove bottom border from cells in the last row */
+.employeeTable > .tableRow:last-child > .tableCell {
+  border-bottom: none;
+}
+
+/* Header Styles */
+/* .tableHeader { */
+  /* No specific styles needed for the header row container itself */
+/* } */
+
+.tableHeader > .tableCell {
+  background-color: #f8f9fa;
+  font-weight: 600;
+  color: #555;
+  border-bottom: 2px solid #dee2e6; /* Thicker header separator */
+  white-space: normal; /* Allow header text to wrap */
+}
+
+/* Cell Specific Styles */
+.checkboxCell {
+  justify-content: center;
+  padding-left: 10px; /* Adjust as needed */
+}
+.checkboxCell input[type="checkbox"] {
+  cursor: pointer;
+}
+
+.employeeInfoCell {
+  gap: 12px;
+  white-space: normal; /* Allow name/ID to wrap */
+}
+
+.employeeImage {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.employeeNameIdBlock {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  line-height: 1.3;
+  min-width: 0; /* Important for text overflow within flex */
+}
+
+.employeeName {
+  font-weight: 500;
+  color: #222;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.employeeId {
+  font-size: 0.8rem;
+  color: #666;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Status Indicator */
+.statusIndicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 10px;
+  border-radius: 15px; /* Pill shape */
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+  border: 1px solid transparent;
+  text-transform: capitalize; /* Nicer display */
+  min-width: 90px; /* Ensure consistent width */
+  justify-content: center; /* Center content within span */
+}
+
+.statusIndicator.active {
+  background-color: #d1e7dd; /* Bootstrap success light background */
+  color: #0f5132; /* Bootstrap success dark text */
+  border-color: #a3cfbb; /* Bootstrap success light border */
+}
+.statusIndicator.active:hover {
+   box-shadow: 0 0 5px rgba(26, 147, 111, 0.3);
+}
+
+
+.statusIndicator.inactive:hover {
+   box-shadow: 0 0 5px rgba(108, 117, 125, 0.3);
+}
+  .statusIndicator.inactive {
+    background-color: #f8d7da;
+    color: #721c24;
+  }
+
+/* --- ADDED: Action Link Style --- */
+.actionLink {
+  background: none;
+  border: none;
+  padding: 0;
+  color: #007bff;
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: inherit;
+  font-family: inherit;
+  text-align: left; /* Align text left if needed */
+}
+
+.actionLink:hover {
+  color: #0056b3;
+}
+
+.actionLink:focus {
+   outline: 1px dotted #007bff;
+   outline-offset: 2px;
+}
+
+/* No Employees Message */
+.noEmployeesMessage {
+  padding: 20px;
+  text-align: center;
+  color: #666;
+  grid-column: 1 / -1; /* Spans all columns automatically (now 6) */
+  border-bottom: none;
+}

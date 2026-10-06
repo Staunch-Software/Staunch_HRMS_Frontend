@@ -17,6 +17,7 @@ import {
 } from "chart.js";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUsers, faMoneyBillAlt, faCalendarAlt, faBriefcase } from "@fortawesome/free-solid-svg-icons";
+import { apiGet } from "../../services/apiClient";
 
 // Register Chart.js components
 ChartJS.register(
@@ -61,8 +62,7 @@ const Dashboard = () => {
   useEffect(() => {
     const fetchPayrollSummary = async () => {
       try {
-        const response = await fetch("/api/payrollSummary");
-        const data = await response.json();
+        const data = await apiGet("/payroll-summary");
         setPayrollSummary(data);
         setEmployeeCount(data.employeesPaid);
       } catch (error) {
@@ -157,11 +157,9 @@ const Dashboard = () => {
 
   return (
     <div className={styles.dashboardContainer}>
-      <Sidebar />
 
       <div className={styles.mainContent}>
-        {/* Top Section */}
-        <TopSection />
+
 
         {/* Main Content Area */}
         <div className={styles.contentArea}>
@@ -270,7 +268,7 @@ const Dashboard = () => {
               </div>
 
               {/* Quick Actions Section */}
-              <div className={styles.quickActionsSection}>
+              {/* <div className={styles.quickActionsSection}>
                 <h2>Quick Actions</h2>
                 <div className={styles.actionButtons}>
                   <button>
@@ -281,7 +279,7 @@ const Dashboard = () => {
                     Run Payroll
                   </button>
                 </div>
-              </div>
+              </div> */}
             </>
           )}
         </div>

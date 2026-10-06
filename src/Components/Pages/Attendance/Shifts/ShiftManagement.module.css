@@ -1,0 +1,185 @@
+/* ShiftManagement.module.css */
+
+.shiftManagementPageContainer {
+    padding: 20px;
+    font-family: sans-serif;
+}
+
+.shiftManagementPageContainer h2 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}
+
+.shiftSections {
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
+}
+
+/* Shift Definition List Styles */
+.shiftDefinitionContainer {
+    flex: 1; /* Adjust flex ratio as needed */
+    padding: 15px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+.shiftDefinitionContainer h3 {
+    margin-top: 0;
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+}
+
+.addButton { /* Reusable button style */
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 15px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+    transition: background-color 0.2s ease;
+}
+.addButton:hover {
+    background-color: #0056b3;
+}
+
+.shiftList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.shiftItem {
+    background-color: #fff;
+    border: 1px solid #eee;
+    border-radius: 4px;
+    padding: 10px 15px;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.shiftColorIndicator {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    border: 1px solid #ccc;
+}
+
+.shiftName {
+    font-weight: 500;
+    flex-grow: 1;
+}
+
+.shiftTimes {
+    font-size: 0.85rem;
+    color: #555;
+}
+
+.shiftActions {
+    display: flex;
+    gap: 8px;
+}
+
+.editBtn, .deleteBtn {
+     background: none;
+     border: none;
+     padding: 2px 5px;
+     cursor: pointer;
+     font-size: 0.85rem;
+     color: #007bff;
+     text-decoration: underline;
+}
+.deleteBtn {
+    color: #dc3545;
+}
+.editBtn:hover { color: #0056b3; }
+.deleteBtn:hover { color: #c82333; }
+
+/* Shift Definition Form (Modal) Styles */
+.modalBackdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+}
+
+.modalContent {
+    background-color: #fff;
+    padding: 25px 30px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    width: 90%;
+    max-width: 500px;
+}
+
+.modalContent h3 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 1.4rem;
+}
+
+.formGroup {
+    margin-bottom: 15px;
+}
+.formGroup label { margin-bottom: 5px; display: block; font-weight: 500; font-size: 0.9rem; }
+.inputField { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; font-size: 0.9rem; box-sizing: border-box;}
+.colorInput { padding: 5px; height: 40px; } /* Specific style for color input */
+
+.modalActions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 25px;
+    padding-top: 15px;
+    border-top: 1px solid #eee;
+}
+
+.saveButton, .cancelButton {
+    border: none;
+    border-radius: 6px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+.saveButton { background-color: #0d6efd; color: white; }
+.saveButton:hover { background-color: #0b5ed7; }
+.cancelButton { background-color: #f8f9fa; color: #495057; border: 1px solid #ced4da; }
+.cancelButton:hover { background-color: #e2e6ea; border-color: #adb5bd; }
+
+
+/* Calendar Container Styles */
+.calendarContainer {
+    flex: 2; /* Take more space */
+    padding: 15px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    background-color: #fff;
+}
+.calendarContainer h3 {
+     margin-top: 0;
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+}
+
+/* Optional: Style calendar events */
+.rbc-event {
+    padding: 4px 6px !important;
+    font-size: 0.8rem !important;
+    border: none !important;
+    color: #333 !important; /* Darker text */
+}

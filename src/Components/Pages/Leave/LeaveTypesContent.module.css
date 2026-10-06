@@ -1,0 +1,416 @@
+/* LeaveTypesContent.module.css */
+
+.container {
+  padding: 10px;
+}
+
+.leaveTypesContainer {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+  align-items: flex-start;
+}
+
+.typesListColumn {
+  flex: 0 0 30%;
+  max-width: 30%;
+  border-radius: 10px;
+  padding: 15px;
+  background-color: #f9f9f9;
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 170px);
+  overflow-y: auto;
+}
+
+.typesListColumn h2 {
+  font-size: 1.5rem;
+  color: #333;
+  margin-top: 0;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #ddd;
+  padding: 5px;
+  flex-shrink: 0;
+  font-weight: 500;
+  position: sticky;
+  top: -10px; /* Corrected sticky positioning */
+}
+
+.typesList {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 15px 0;
+  flex-grow: 1;
+}
+
+.typeItemContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 15px 15px 25px;
+  margin-bottom: 8px;
+  border-radius: 5px;
+  background-color: #fff;
+  border: 1px solid #eee;
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+  position: relative;
+  font-size: 0.95rem;
+  overflow: hidden;
+}
+
+.typeItemContainer::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 6px;
+  background-color: #e0e0e0;
+  transition: background-color 0.3s ease;
+}
+
+.typeItemContainer::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px; 
+  background-color: #e0e0e0; 
+  transition: background-color 0.3s ease; 
+}
+
+.typeItemContainer:hover {
+  border-color: #ddd;
+}
+
+.activeType {
+  border-color: #b3d7ff;
+  background-color: #fff;
+}
+
+.activeType::before {
+  background-color: #0c70fc;
+}
+
+.activeType::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background-color: #0c70fc;
+}
+.typeName {
+  font-weight: 500;
+  color: #333;
+}
+
+.leaveCountBadge {
+  background-color: #e9ecef;
+  color: #495057;
+  font-size: 0.8rem;
+  font-weight: bold;
+  padding: 3px;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.activeType .typeName {
+    color: #0056b3;
+}
+
+.activeType .leaveCountBadge {
+  background-color: #0c70fc;
+  color: white;
+}
+.noTypes {
+  padding: 10px 12px;
+  color: #777;
+  background-color: #fff;
+  border: 1px solid #eee;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.addTypeButton {
+  background-color:#007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 15px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.2s ease;
+  margin-top: 15px;
+  align-self: flex-start;
+  flex-shrink: 0;
+}
+
+.addTypeButton:hover {
+  background-color: #0c70fc;
+}
+.addTypeButton:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+.configurationColumn {
+  flex: 1 1 75%;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  padding: 0;
+  background-color: #fff;
+  height: calc(100vh - 150px);
+  overflow-y: auto;
+}
+
+.configurationColumn h2 {
+  font-size: 1.5rem;
+  color: #333;
+  margin: 0;
+  border-bottom: 1px solid #ddd;
+  padding: 15px; /* Reverted padding */
+  background-color: #ffffff;
+  position: sticky;
+  top: 0; /* Corrected sticky positioning */
+  z-index: 10;
+  font-weight: 500;
+}
+
+.configDetailsWrapper {
+   padding: 15px;
+}
+
+.configSection {
+  margin-bottom: 25px;
+  padding-bottom: 15px;
+  border-bottom: 1px dashed #eee;
+}
+
+.configSection:last-of-type {
+  margin-bottom: 0;
+  border-bottom: none;
+}
+
+.configSection h4 {
+  font-size: 1rem;
+  color: #0c70fc;
+  margin-top: 0;
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+.configList {
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 8px 15px;
+  font-size: 0.9rem;
+}
+
+.configList dt {
+  font-weight: 500;
+  color: #555;
+  grid-column: 1;
+  text-align: right;
+}
+
+.configList dd {
+  margin: 0;
+  color: #333;
+  grid-column: 2;
+  word-break: break-word;
+}
+
+.configList dd.descriptionValue {
+   line-height: 1.6;
+}
+
+.selectPrompt {
+  color: #777;
+  font-style: italic;
+  text-align: center;
+  padding: 30px 15px;
+}
+
+.configActions {
+  margin-top: 25px;
+  padding-top: 20px;
+  border-top: 1px solid #ddd;
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+.editButton, .deleteButton {
+  border: none;
+  border-radius: 5px;
+  padding: 8px 15px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+.editButton {
+  background-color: #555;
+  color: #ffffff;
+}
+.editButton:hover {
+  background-color: #444;
+}
+.deleteButton {
+  background-color: #dc3545;
+  color: white;
+}
+.deleteButton:hover {
+  background-color: #c82333;
+}
+.editButton:disabled, .deleteButton:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+.addFormContainer {
+  padding: 15px;
+}
+
+.addFormContainer h2 {
+  font-size: 1.3rem;
+  color: #333;
+  margin-top: 0;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 10px;
+}
+
+.formRow {
+  display: flex;
+  gap: 15px;
+  align-items: flex-end;
+}
+
+.formGroup {
+  margin-bottom: 15px;
+  flex-grow: 1;
+}
+
+.formGroupName {
+  flex-grow: 3;
+}
+.formGroupShortCode {
+  flex-grow: 1;
+  max-width: 150px;
+}
+
+
+.formGroup label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 500;
+  font-size: 1rem;
+  color: #3f3e3e;
+}
+
+.formGroup input[type="text"],
+.formGroup input[type="number"],
+.formGroup textarea,
+.formGroup select {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  box-sizing: border-box;
+}
+
+.formGroup input[name="shortCode"]::placeholder {
+  color: #aaa;
+  font-style: italic;
+}
+
+
+.formGroup textarea {
+  resize: vertical;
+}
+
+.formActions {
+  margin-top: 25px;
+  padding-top: 15px;
+  border-top: 1px solid #eee;
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+.saveButton, .cancelButton {
+  border: none;
+  border-radius: 5px;
+  padding: 8px 18px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.saveButton {
+  background-color: #007bff;
+  color: white;
+}
+.saveButton:hover {
+  background-color: #0056b3;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.cancelButton {
+  background-color: #f8f9fa;
+  color: #555;
+  border: 1px solid #ccc;
+}
+.cancelButton:hover {
+  background-color: #e2e6ea;
+  border-color: #bbb;
+}
+
+/* --- ADDED Styles for Leave Counts Form Section --- */
+.formGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Responsive grid */
+    gap: 15px 20px; /* Row gap, Column gap */
+}
+
+.formGroupCheckbox {
+    display: flex;
+    align-items: center;
+    /* margin-bottom: 15px; /* Use gap from formGrid instead */
+    /* Adjust grid spanning if needed, but often not necessary with auto-fit */
+}
+
+.formGroupCheckbox input[type="checkbox"] {
+    margin-right: 8px;
+    width: auto; /* Let checkbox size naturally */
+    flex-shrink: 0; /* Prevent checkbox from shrinking */
+    accent-color: #007bff; /* Optional: Style checkbox color */
+}
+.formGroupCheckbox label {
+    margin-bottom: 0; /* Remove bottom margin for inline label */
+    flex-grow: 1; /* Allow label to take space */
+    font-weight: normal; /* Make checkbox labels normal weight */
+    color: #3f3e3e; /* Match other labels */
+    font-size: 0.9rem; /* Match other inputs */
+    cursor: pointer; /* Make label clickable for checkbox */
+}
+
+/* Style disabled inputs (e.g., Carry Forward Limit) */
+.disabledInput input[type="number"] {
+    background-color: #e9ecef;
+    cursor: not-allowed;
+    opacity: 0.7;
+}

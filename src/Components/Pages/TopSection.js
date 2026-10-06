@@ -1,5 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import styles from "./TopSection.module.css";
+import { apiLogout } from "../../services/apiClient";
 import StaunchLogo from '../../Images/StaunchLogo.png';
 import ProfilePhoto from '../../Images/ProfilePhoto.png';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -37,6 +39,7 @@ const SlidingContainer = ({ isOpen, onClose, children }) => {
 };
 
 const TopSection = () => {
+    const navigate = useNavigate();
     const [showAddOptions, setShowAddOptions] = useState(false);
     const addOptionsRef = useRef(null);
     const [activeContainer, setActiveContainer] = useState(null);
@@ -61,9 +64,9 @@ const TopSection = () => {
     };
 
     const handleSignOut = () => {
-        // Add your sign-out logic here (e.g., clearing cookies, redirecting)
-        console.log("Signing out...");
+        apiLogout();
         setActiveContainer(null); // Close the profile container after sign-out
+        navigate('/login');
     };
 
     const handleProfilePhotoClick = () => {

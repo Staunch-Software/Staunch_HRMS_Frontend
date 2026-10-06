@@ -1,0 +1,207 @@
+/* src/Components/Pages/Employee/FilterPopup.module.css */
+
+/* --- CSS Variables (Optional: for theming) --- */
+:root {
+    --popup-bg: #ffffff;
+    --popup-border-color: #e0e0e0;
+    --popup-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    --overlay-bg: rgba(0, 0, 0, 0.6);
+    --text-primary: #333;
+    --text-secondary: #555;
+    --text-label: #666;
+    --primary-color: #007bff;
+    --primary-color-dark: #0056b3;
+    --secondary-color: #6c757d;
+    --secondary-color-dark: #5a6268;
+    --danger-color: #dc3545;
+    --danger-color-dark: #c82333;
+    --input-border: #ced4da;
+    --input-focus-border: #80bdff;
+    --input-focus-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+    --border-radius: 6px;
+    --transition-speed: 0.2s;
+  }
+  
+  /* --- Overlay --- */
+  .overlay {
+    position: fixed;
+    inset: 0; /* shorthand for top, right, bottom, left = 0 */
+    background-color: var(--overlay-bg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1005;
+    opacity: 0; /* Start hidden for animation */
+    animation: fadeIn var(--transition-speed) ease-out forwards;
+  }
+  
+  /* --- Popup Container --- */
+  .popup {
+    background-color: var(--popup-bg);
+    padding: 30px 35px; /* Increased padding */
+    border-radius: var(--border-radius);
+    box-shadow: var(--popup-shadow);
+    min-width: 350px;
+    max-width: 500px;
+    width: 90%; /* Responsive width */
+    z-index: 1006;
+    border: 1px solid var(--popup-border-color);
+    transform: scale(0.95); /* Start slightly smaller for animation */
+    opacity: 0; /* Start hidden for animation */
+    animation: fadeInScale var(--transition-speed) ease-out 0.1s forwards; /* Delay slightly */
+  }
+  
+  /* --- Popup Content --- */
+  .popup h3 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    color: var(--text-primary);
+    font-size: 1.4rem; /* Slightly larger */
+    font-weight: 600; /* Bolder */
+    text-align: left; /* Standard form alignment */
+    border-bottom: 1px solid #eee; /* Add separator under title */
+    padding-bottom: 15px;
+    margin-bottom: 25px;
+  }
+  
+  /* Separate Divider Style (optional, title border might be enough) */
+  .divider {
+    border: none;
+    height: 1px;
+    background-color: #f0f0f0;
+    margin: 20px 0; /* Adjust spacing */
+  }
+  
+  .filterGroup {
+    margin-bottom: 20px; /* Increased spacing */
+  }
+  
+  .filterGroup label {
+    display: block;
+    margin-bottom: 8px; /* Increased space */
+    font-size: 0.85rem; /* Slightly smaller label */
+    color: var(--text-label);
+    font-weight: 500;
+    text-transform: uppercase; /* Uppercase labels */
+    letter-spacing: 0.5px;
+  }
+  
+  /* --- Select Dropdown Styling --- */
+  .selectDropdown,
+  .inputField { /* Apply similar styles to inputs if used */
+    width: 100%;
+    padding: 10px 12px; /* More comfortable padding */
+    border: 1px solid var(--input-border);
+    border-radius: var(--border-radius);
+    font-size: 1rem; /* Standard input font size */
+    background-color: #fff;
+    cursor: pointer;
+    transition: border-color var(--transition-speed) ease-in-out, box-shadow var(--transition-speed) ease-in-out;
+    appearance: none; /* Remove default styling */
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e"); /* Custom arrow */
+    background-repeat: no-repeat;
+    background-position: right .75rem center;
+    background-size: 16px 12px;
+    color: var(--text-secondary);
+  }
+  
+  .selectDropdown:focus,
+  .inputField:focus {
+    outline: none;
+    border-color: var(--input-focus-border);
+    box-shadow: var(--input-focus-shadow);
+  }
+  
+  /* --- Button Group & Buttons --- */
+  .buttonGroup {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 30px; /* More space before buttons */
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+  }
+  
+  .buttonGroup > div { /* Apply/Cancel group */
+    display: flex;
+    gap: 12px; /* Slightly more gap */
+  }
+  
+  /* Base Button Styles */
+  .clearButton,
+  .cancelButton,
+  .applyButton {
+    padding: 10px 20px; /* Larger buttons */
+    border-radius: var(--border-radius);
+    border: 1px solid transparent;
+    cursor: pointer;
+    font-size: 0.95rem;
+    font-weight: 500; /* Slightly bolder */
+    transition: all var(--transition-speed) ease;
+    display: inline-flex; /* Align icon and text */
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    line-height: 1.5; /* Ensure consistent height */
+  }
+  
+  /* Clear Button Style */
+  .clearButton {
+    background: none;
+    border: none;
+    color: var(--danger-color);
+    font-weight: 500;
+    padding: 10px 0; /* Remove padding for text-like feel */
+    text-decoration: none; /* Remove underline */
+  }
+  .clearButton:hover {
+    color: var(--danger-color-dark);
+    text-decoration: underline; /* Underline on hover */
+  }
+  
+  /* Cancel Button Style */
+  .cancelButton {
+    background-color: #fff;
+    border-color: var(--input-border);
+    color: var(--text-secondary);
+  }
+  .cancelButton:hover {
+    background-color: #f8f9fa; /* Slight background change */
+    border-color: #adb5bd;
+    color: var(--text-primary);
+  }
+  
+  /* Apply Button Style */
+  .applyButton {
+    background-color: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+    box-shadow: 0 2px 5px rgba(0, 123, 255, 0.2);
+  }
+  .applyButton:hover {
+    background-color: var(--primary-color-dark);
+    border-color: var(--primary-color-dark);
+    box-shadow: 0 4px 8px rgba(0, 123, 255, 0.3);
+    transform: translateY(-1px); /* Subtle lift */
+  }
+  .applyButton:active {
+    transform: translateY(0px); /* Push down on click */
+  }
+  
+  
+  /* --- Animations --- */
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  @keyframes fadeInScale {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }

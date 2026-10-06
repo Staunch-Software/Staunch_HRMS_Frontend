@@ -1,0 +1,155 @@
+:root {
+  --stepper-width: 75%;
+  --stepper-max-width: 850px;
+  --stepper-step-color: #869ab8;
+  --stepper-step-bg: #ffffff;
+  --stepper-active-color: #007bff;
+  --stepper-active-bg: #f0f7ff;
+  --stepper-active-border: #007bff;
+  --stepper-active-shadow: 0 4px 8px rgba(0, 114, 255, 0.18);
+  --stepper-completed-color: #ffffff;
+  --stepper-completed-bg: #28a745;
+  --stepper-completed-border: #28a745;
+  --stepper-completed-shadow: 0 4px 8px rgba(40, 167, 69, 0.18);
+  --stepper-connector-color: #d1d9e6;
+  --stepper-connector-active-color: var(--stepper-completed-bg);
+  --stepper-circle-size: 32px;
+  --stepper-border-width: 2px;
+  --stepper-font-size-label: 0.85rem;
+  --stepper-font-size-circle: 0.9rem;
+  --stepper-transition: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.stepperContainer {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  width: var(--stepper-width);
+  max-width: var(--stepper-max-width);
+  margin: 35px auto 45px auto;
+  padding: 0 12px;
+  position: relative;
+}
+
+.stepItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  flex: 1;
+  padding: 0 5px;
+  cursor: default;
+  margin: 0 -1px;
+}
+
+.stepCircle {
+  width: var(--stepper-circle-size);
+  height: var(--stepper-circle-size);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: var(--stepper-font-size-circle);
+  margin-bottom: 10px;
+  border: var(--stepper-border-width) solid var(--stepper-step-color);
+  color: var(--stepper-step-color);
+  background-color: var(--stepper-step-bg);
+  z-index: 2;
+  position: relative;
+  transition: all var(--stepper-transition);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06);
+}
+
+.stepLabel {
+  font-size: var(--stepper-font-size-label);
+  color: var(--stepper-step-color);
+  font-weight: 500;
+  max-width: 110px;
+  word-wrap: break-word;
+  line-height: 1.35;
+  transition: color var(--stepper-transition), font-weight var(--stepper-transition);
+}
+
+.stepItem.completed .stepCircle {
+  background-color: var(--stepper-completed-bg);
+  border-color: var(--stepper-completed-border);
+  color: var(--stepper-completed-color);
+  box-shadow: var(--stepper-completed-shadow);
+}
+.stepItem.completed .stepLabel {
+  color: #5a6268;
+  font-weight: 500;
+}
+
+.stepItem.active .stepCircle {
+  border-color: var(--stepper-active-border);
+  color: var(--stepper-active-color);
+  background-color: var(--stepper-active-bg);
+  transform: scale(1.1);
+  box-shadow: var(--stepper-active-shadow);
+}
+.stepItem.active .stepLabel {
+  color: var(--stepper-active-color);
+  font-weight: 600;
+}
+
+.stepItem:not(:first-child)::before {
+  content: '';
+  position: absolute;
+  top: calc(var(--stepper-circle-size) / 2);
+  left: calc(-50% + (var(--stepper-circle-size) / 3));
+  right: calc(50% + (var(--stepper-circle-size) / 3));
+  height: 2px;
+  background-color: var(--stepper-connector-color);
+  z-index: 1;
+  transition: background-color var(--stepper-transition);
+  border-radius: 1px;
+}
+
+.stepItem.active::before,
+.stepItem.completed::before {
+  background-color: var(--stepper-connector-active-color);
+}
+
+.stepItem:not(:last-child)::after {
+  display: none;
+}
+
+.stepIcon {
+  font-size: 1rem;
+}
+
+@media (max-width: 768px) {
+  .stepperContainer {
+    width: 90%;
+    margin: 30px auto 40px auto;
+  }
+  :root {
+    --stepper-circle-size: 30px;
+    --stepper-font-size-label: 0.8rem;
+    --stepper-font-size-circle: 0.85rem;
+  }
+  .stepItem:not(:first-child)::before {
+    top: 15px;
+    left: calc(-50% + 10px);
+    right: calc(50% + 10px);
+  }
+  .stepLabel {
+    max-width: 80px;
+  }
+}
+
+@media (max-width: 480px) {
+  .stepperContainer {
+    width: 95%;
+  }
+  :root {
+    --stepper-circle-size: 28px;
+    --stepper-font-size-label: 0.75rem;
+  }
+  .stepItem:not(:first-child)::before {
+    top: 14px;
+  }
+}

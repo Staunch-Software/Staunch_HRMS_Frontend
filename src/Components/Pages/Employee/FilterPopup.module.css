@@ -1,0 +1,208 @@
+/* src/Components/Pages/Employee/FilterPopup.module.css */
+
+/* --- CSS Variables --- */
+:root {
+    --popup-bg: #ffffff;
+    --popup-border-color: #e7eaf3; /* Lighter border */
+    --popup-shadow: 0 10px 30px rgba(0, 0, 0, 0.12); /* More diffused shadow */
+    --overlay-bg: rgba(30, 30, 50, 0.65); /* Slightly tinted overlay */
+    --text-primary: #212529;
+    --text-secondary: #495057;
+    --text-label: #6c757d;
+    --primary-color: #007bff;
+    --primary-color-dark: #0056b3;
+    --secondary-color: #6c757d;
+    --secondary-color-dark: #5a6268;
+    --danger-color: #e15261; /* Softer danger red */
+    --danger-color-dark: #c82333;
+    --input-border: #d1d9e6; /* Softer input border */
+    --input-focus-border: #86b7fe; /* Bootstrap 5 focus blue */
+    --input-focus-shadow: 0 0 0 0.10rem rgba(13, 110, 253, 0.25);
+    --border-radius: 8px; /* Slightly larger radius */
+    --transition-speed: 0.2s;
+  }
+  
+  /* --- Overlay --- */
+  .overlay {
+    position: fixed;
+    inset: 0;
+    background-color: var(--overlay-bg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1005;
+    opacity: 0;
+    animation: fadeIn var(--transition-speed) ease-out forwards;
+  }
+  
+  /* --- Popup Container --- */
+  .popup {
+    background-color: var(--popup-bg);
+    padding: 35px 40px; /* Increased padding */
+    border-radius: var(--border-radius);
+    box-shadow: var(--popup-shadow);
+    min-width: 340px;
+    max-width: 480px; /* Slightly wider */
+    width: 90%;
+    z-index: 1006;
+    border: 1px solid var(--popup-border-color);
+    transform: translateY(-10px); /* Start slightly above for animation */
+    opacity: 0;
+    animation: fadeInSlideDown var(--transition-speed) ease-out 0.05s forwards;
+  }
+  
+  /* --- Popup Header --- */
+  .popup h3 {
+    margin-top: 0;
+    margin-bottom: 25px; /* Space after title */
+    color: var(--text-primary);
+    font-size: 1.3rem;
+    font-weight: 600;
+    text-align: left;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #f0f0f0; /* Lighter separator */
+  }
+  
+  /* --- Filter Group & Label --- */
+  .filterGroup {
+    margin-bottom: 22px; /* Increased spacing */
+  }
+  
+  .filterGroup label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 0.8rem; /* Smaller label */
+    color: var(--text-label);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  
+  /* --- Select Dropdown --- */
+  .selectDropdown,
+  .inputField { /* Style inputs similarly if added */
+    width: 100%;
+    padding: 10px 14px; /* Comfortable padding */
+    border: 1px solid var(--input-border);
+    border-radius: var(--border-radius);
+    font-size: 0.95rem;
+    background-color: #fff;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: border-color var(--transition-speed) ease-in-out, box-shadow var(--transition-speed) ease-in-out;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right .9rem center;
+    background-size: 16px 12px;
+  }
+  .selectDropdown:focus,
+  .inputField:focus {
+    outline: none;
+    border-color: var(--input-focus-border);
+    box-shadow: var(--input-focus-shadow);
+  }
+  
+  /* --- Button Group & Buttons --- */
+  .buttonGroup {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #f0f0f0; /* Lighter top border */
+  }
+  .buttonGroup > div {
+    display: flex;
+    gap: 12px;
+  }
+  
+  /* Base Button Styles */
+  .clearButton,
+  .cancelButton,
+  .applyButton {
+    padding: 10px 20px;
+    border-radius: var(--border-radius);
+    border: 1px solid transparent;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all var(--transition-speed) ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    line-height: 1.5;
+  }
+  
+  /* Clear Button Style */
+  .clearButton {
+    background: none;
+    border: none;
+    color: var(--danger-color);
+    font-weight: 500;
+    padding: 10px 0;
+    text-decoration: none;
+  }
+  .clearButton:hover {
+    color: var(--danger-color-dark);
+    text-decoration: underline;
+  }
+  
+  /* Cancel Button Style */
+  .cancelButton {
+    background-color: #fff;
+    border-color: var(--input-border);
+    color: var(--text-secondary);
+  }
+  .cancelButton:hover {
+    background-color: #f8f9fa;
+    border-color: #adb5bd;
+    color: var(--text-primary);
+  }
+  
+  /* Apply Button Style */
+  .applyButton {
+    background-color: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+    box-shadow: 0 2px 5px rgba(0, 123, 255, 0.2);
+  }
+  .applyButton:hover {
+    background-color: var(--primary-color-dark);
+    border-color: var(--primary-color-dark);
+    box-shadow: 0 4px 8px rgba(0, 123, 255, 0.3);
+    transform: translateY(-1px);
+  }
+  .applyButton:active {
+    transform: translateY(0px);
+    box-shadow: none;
+  }
+
+  .divider {
+    border: none;
+    height: 1px;
+    background-color: #e0e0e0;
+    margin-bottom: 10px;
+}
+  
+  
+  /* --- Animations --- */
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  @keyframes fadeInSlideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+ 
+

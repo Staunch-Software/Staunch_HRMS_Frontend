@@ -1,0 +1,144 @@
+/* src/Components/Pages/Settings/SettingsForm.module.css */
+
+:root {
+    --settings-form-max-width: 550px;
+    --settings-form-bg: #ffffff;
+    --settings-form-border-color: #e0e0e0;
+    --settings-form-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+    --text-primary: #343a40;
+    --text-secondary: #495057;
+    --text-label: #555;
+    --primary-color: #007bff;
+    --primary-color-dark: #0056b3;
+    --secondary-color: #6c757d;
+    --secondary-color-dark: #5a6268;
+    --danger-color: #dc3545;
+    --input-border: #ced4da;
+    --input-focus-border: #80bdff;
+    --input-focus-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+    --border-radius: 6px;
+    --transition-speed: 0.15s;
+  }
+  
+  .formContainer {
+    padding: 30px 35px;
+    max-width: var(--settings-form-max-width);
+    margin: 3rem auto;
+    background-color: var(--settings-form-bg);
+    border-radius: var(--border-radius);
+    box-shadow: var(--settings-form-shadow);
+    border: 1px solid var(--settings-form-border-color);
+  }
+  
+  .formContainer h2 {
+    font-size: 1.6rem;
+    color: var(--text-primary);
+    margin: 0 0 20px 0;
+    text-align: center;
+    font-weight: 600;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #eee;
+  }
+  
+  .formGroup {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 22px;
+  }
+  
+  .label {
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: var(--text-label);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  
+  .input {
+    padding: 10px 14px;
+    border: 1px solid var(--input-border);
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    background-color: #fff;
+    color: var(--text-secondary);
+    transition: border-color var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+    box-sizing: border-box;
+    width: 100%;
+    height: 42px; /* Standard height */
+  }
+  .input::placeholder {
+      color: #aaa;
+  }
+  .input:focus {
+    outline: none;
+    border-color: var(--input-focus-border);
+    box-shadow: var(--input-focus-shadow);
+  }
+  
+  .requiredAsterisk { /* Added class for consistency if needed */
+    color: var(--danger-color);
+    font-weight: bold;
+    margin-left: 3px;
+  }
+  
+  .buttonGroup {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+  }
+  
+  .submitButton,
+  .cancelButton {
+    border: 1px solid transparent;
+    border-radius: var(--border-radius);
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: all var(--transition-speed) ease;
+    line-height: 1.5;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+  }
+  .submitButton:active,
+  .cancelButton:active {
+    transform: translateY(1px);
+  }
+  
+  .submitButton {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 123, 255, 0.15);
+  }
+  .submitButton:hover {
+    background-color: var(--primary-color-dark);
+    border-color: var(--primary-color-dark);
+    box-shadow: 0 3px 6px rgba(0, 123, 255, 0.25);
+    transform: translateY(-1px);
+  }
+  
+  .cancelButton {
+    background-color: var(--secondary-color);
+    border-color: var(--secondary-color);
+    color: #fff;
+     box-shadow: 0 2px 4px rgba(108, 117, 125, 0.1);
+  }
+  .cancelButton:hover {
+    background-color: var(--secondary-color-dark);
+    border-color: var(--secondary-color-dark);
+     box-shadow: 0 3px 6px rgba(108, 117, 125, 0.2);
+  }
+  
+  .errorMessage {
+    color: var(--danger-color);
+    font-size: 0.85rem;
+    margin-top: 6px;
+    padding-left: 2px; /* Small indent */
+  }

@@ -1,0 +1,207 @@
+/* src/Components/Pages/Employee/ColumnsPopup.module.css */
+
+:root {
+    --popup-bg: #ffffff;
+    --popup-border-color: #e7eaf3;
+    --popup-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+    --overlay-bg: rgba(30, 30, 50, 0.65);
+    --text-primary: #212529;
+    --text-secondary: #495057;
+    --text-label: #6c757d;
+    --text-disabled: #adb5bd;
+    --primary-color: #007bff;
+    --primary-color-dark: #0056b3;
+    --primary-disabled-bg: #cce5ff; /* Lighter blue for disabled */
+    --secondary-color: #6c757d;
+    --secondary-color-dark: #5a6268;
+    --list-hover-bg: #f0f7ff; /* Very light blue hover */
+    --input-border: #d1d9e6;
+    --checkbox-accent: var(--primary-color);
+    --border-radius: 8px;
+    --transition-speed: 0.15s;
+  }
+  
+  .overlay {
+    position: fixed;
+    inset: 0;
+    background-color: var(--overlay-bg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1010;
+    opacity: 0;
+    animation: fadeIn var(--transition-speed) ease-out forwards;
+  }
+  
+  .popup {
+    background-color: var(--popup-bg);
+    padding: 30px 0 30px 35px; /* Asymmetric padding: more left, less right for scrollbar */
+    border-radius: var(--border-radius);
+    box-shadow: var(--popup-shadow);
+    min-width: 400px;
+    max-width: 600px;
+    width: 90%;
+    max-height: 85vh; /* Limit height */
+    display: flex;
+    flex-direction: column;
+    z-index: 1011;
+    border: 1px solid var(--popup-border-color);
+    transform: scale(0.95);
+    opacity: 0;
+    animation: fadeInScale var(--transition-speed) ease-out 0.05s forwards;
+  }
+  
+  .popup h3 {
+    margin: 0 35px 8px 0; /* Match right padding */
+    color: var(--text-primary);
+    font-size: 1.3rem;
+    font-weight: 600;
+    padding-bottom: 15px; /* Add space below title */
+  }
+  
+  .instructions {
+    font-size: 0.9rem;
+    color: var(--text-label);
+    margin: 0 35px 20px 0; /* Match right padding */
+    line-height: 1.5;
+  }
+  
+  .columnList {
+    flex-grow: 1;
+    overflow-y: auto;
+    margin-bottom: 25px; /* Space before button group */
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); /* Responsive columns, slightly wider */
+    gap: 12px 15px; /* Row and column gap */
+    padding-right: 20px; /* More space for scrollbar and prevent content touching edge */
+    padding-left: 2px; /* Slight indent */
+  
+    /* Custom Scrollbar Styling (Optional) */
+    scrollbar-width: thin; /* Firefox */
+    scrollbar-color: #ccc #f0f0f0; /* Firefox */
+  }
+  /* Webkit Scrollbar */
+  .columnList::-webkit-scrollbar {
+    width: 8px;
+  }
+  .columnList::-webkit-scrollbar-track {
+    background: #f0f0f0;
+    border-radius: 4px;
+  }
+  .columnList::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 4px;
+    border: 2px solid #f0f0f0;
+  }
+  .columnList::-webkit-scrollbar-thumb:hover {
+    background-color: #aaa;
+  }
+  
+  
+  .checkboxLabel {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* More space */
+    cursor: pointer;
+    font-size: 0.95rem;
+    padding: 8px 10px; /* Increased padding */
+    border-radius: var(--border-radius);
+    transition: background-color var(--transition-speed) ease;
+    color: var(--text-secondary);
+    word-break: break-word; /* Allow long labels to wrap */
+  }
+  .checkboxLabel:hover:not(.disabledLabel) {
+    background-color: var(--list-hover-bg);
+  }
+  
+  .checkboxLabel input[type="checkbox"] {
+    cursor: pointer;
+    width: 18px; /* Slightly larger checkbox */
+    height: 18px;
+    accent-color: var(--checkbox-accent);
+    flex-shrink: 0; /* Prevent checkbox from shrinking */
+  }
+  
+  .disabledLabel {
+    cursor: not-allowed;
+    color: var(--text-disabled);
+    font-style: italic;
+  }
+  .disabledLabel input[type="checkbox"] {
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+  
+  .buttonGroup {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: auto; /* Pushes to bottom */
+    padding: 20px 35px 0 0; /* Top padding, Match popup right padding */
+    border-top: 1px solid var(--popup-border-color); /* Use lighter border */
+  }
+  
+  .cancelButton,
+  .saveButton {
+    padding: 10px 20px;
+    border-radius: var(--border-radius);
+    border: 1px solid transparent;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all var(--transition-speed) ease;
+    line-height: 1.5;
+  }
+  
+  .cancelButton {
+    background-color: #fff;
+    border-color: var(--input-border);
+    color: var(--text-secondary);
+  }
+  .cancelButton:hover {
+    background-color: #f8f9fa;
+    border-color: #adb5bd;
+    color: var(--text-primary);
+  }
+  
+  .saveButton {
+    background-color: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+    box-shadow: 0 2px 5px rgba(0, 123, 255, 0.2);
+  }
+  .saveButton:hover:not(:disabled) {
+    background-color: var(--primary-color-dark);
+    border-color: var(--primary-color-dark);
+    box-shadow: 0 4px 8px rgba(0, 123, 255, 0.3);
+    transform: translateY(-1px);
+  }
+  .saveButton:active:not(:disabled) {
+    transform: translateY(0);
+    box-shadow: none;
+  }
+  .saveButton:disabled {
+    background-color: var(--primary-disabled-bg);
+    border-color: var(--primary-disabled-bg);
+    color: #6a9acf; /* Text color for disabled primary */
+    cursor: not-allowed;
+    opacity: 0.8;
+    box-shadow: none;
+  }
+  
+  
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  @keyframes fadeInScale {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }

@@ -8,52 +8,78 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   height: 20px; /* Adjusted to auto to accommodate content */
   position: relative; /* Ensure correct positioning context for containers */
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
 }
 
 .searchBar {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  border-radius: 10px;
+  border-radius: 18px; /* More rounded */
   padding: 0;
-  background-color: #f0f0f0;
-  width: 230px;
+  background-color: #f0f2f5; /* Light grey background */
+  width: 250px; /* Slightly wider */
+  border: 1px solid transparent; /* Placeholder for focus */
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Add focus state for visual feedback */
+.searchBar:focus-within {
+  border-color: #adbfff; 
+  /* box-shadow: 0 0 0 2px rgba(79, 152, 255, 0.2);  */
+  background-color: #ffffff; 
 }
 
 .searchBar input {
+  flex-grow: 1; /* Take available space */
   border: none;
   outline: none;
-  padding: 3px;
-  font-size: 1rem;
-  background-color: #f0f0f0;
+  padding: 8px 15px; /* More padding */
+  font-size: 0.9rem;
+  background-color: transparent; /* Inherit background */
+  border-radius: 18px 0 0 18px; /* Match parent radius */
+  color: #555; /* Darker placeholder/text color */
   text-align: center;
-  color:#777
+}
+
+.searchBar input::placeholder {
+  color: #888; /* Style placeholder */
 }
 
 .searchIcon {
-  background-color: #4f98ff;
+  background-color: #4f98ff; /* Primary blue */
   color: #ffffff;
-  padding: 10px;
-  font-weight: bold;
-  border-radius: 10px;
+  padding: 9px 12px; /* Adjusted padding */
+  border-radius: 0 18px 18px 0; /* Match parent radius */
+  cursor: pointer;
+  display: flex; /* Center icon if using an SVG/Font Icon */
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s ease;
 }
+
+.searchIcon:hover {
+  background-color: #3a7bd5; /* Darker blue on hover */
+}
+
+
 
 .topSectionButton {
-  background-color: #ffffff;
-  color:#4f98ff;
-  padding: 10px 10px;
-  border: 2px solid #4f98ff;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 0.9rem;
-  transition: background-color 0.2s ease, border-color 0.2s ease;
-  margin-right: 10px;
-  position: relative; /* Make button relative for positioning dropdown */
-}
-
-.topSectionButton:hover{
   background-color: #4f98ff;
   color: #ffffff;
+  padding: 8px 16px; /* Adjusted padding */
+  border: 1px solid #4f98ff;
+  border-radius: 6px; /* Standard border radius */
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 500; /* Slightly bolder */
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  display: flex; /* Align icon and text */
+  align-items: center;
+}
+
+.topSectionButton:hover {
+  box-shadow: 0 4px 8px rgba(111, 149, 231, 0.911); /* Add subtle shadow on hover */
 }
 
 .topSectionButtonicon {
@@ -70,16 +96,16 @@
 /* Styles for the add options dropdown */
 .addOptions {
   position: absolute;
-  top: 60px; /* Position below the button */
-  right: 170px; /* Align to the right of the button */
+  top: 100%;
+  right: 14%;
   background-color: #fff;
-  border: 1px solid #ccc;
-  border-radius: 7px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-  padding: 5px 0;
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   z-index: 10;
-  min-width: 200px; /* Adjust width as needed */
-  display: block;
+  min-width: 180px;
+  border: 1px solid #e0e0e0; /* border-color */
+  padding: 8px 0;
+  overflow: hidden;
 }
 
 /* Show the dropdown when showAddOptions is true */
@@ -88,28 +114,27 @@
 }
 
 .addOptionButton {
-  display: flex;
-  justify-content: center; /* Center text horizontally */
-  align-items: center; /* Center text vertically */
-  width: 80%;
+  display: block;
+  align-items: center;
+  gap: 10px;
   padding: 10px 15px;
-  text-align: center; /* Ensure text alignment is centered */
-  background-color: transparent;
-  border: 1px solid #423c44;
-  border-radius: 12px;
+  background: none;
+  border: none;
+  width: 100%;
   cursor: pointer;
-  color: #636161;
   font-size: 0.9rem;
-  margin-bottom: 10px; /* Add gap between each section */
+  color: #343a40; 
+  transition: background-color 0.15s ease, color 0.15s ease;
   margin-left: auto;
-  margin-right: auto; /* Center align the button */
+  margin-right: auto;
 }
 
 .addOptionButton:hover {
-  /* background-color: #f0f0f0; */
-  border: 2px solid #4f98ff;
-  color:#4f98ff;
+
+  background-color: #f1f3f5; /* grey-200 */
+  color: #0c70fc; /* primary-color */
 }
+
 .iconWrapper {
   position: relative;
   display: inline-block;
@@ -141,19 +166,21 @@
 /* Tooltip style */
 .tooltip {
   visibility: hidden;
-  width: 100px;
-  /* background-color: #555; */
-  color: #555;
+  opacity: 0;
+  background-color: #333;
+  color: #fff;
   text-align: center;
   border-radius: 6px;
-  padding: 5px 0;
+  padding: 5px 10px;
   position: absolute;
-  z-index: 1;
-  opacity: 0;
-  transition: opacity 0.3s;
-  margin-left: -70px; /* Half of the width to center the tooltip */
-  top:45px;
-  font-size: 15px;
+  z-index: 101;
+  top: calc(100% + 10px); /* Position BELOW the icon */
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.8rem;
+  white-space: nowrap;
+  transition: opacity 0.2s ease, visibility 0.2s ease;
+  pointer-events: none;
 }
 
 /* Show the tooltip text */
@@ -177,7 +204,7 @@
   margin-left: -5px;
   border-width: 8px;
   border-style: solid;
-  border-color: transparent transparent #555 transparent;
+  border-color: #333 transparent transparent transparent;  
 } */
 
 .profileIcon {

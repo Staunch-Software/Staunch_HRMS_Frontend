@@ -1,0 +1,59 @@
+.container {
+    margin-top: 10px;
+}
+
+.summaryLine {
+    font-weight: 600;
+    color: #343a40;
+    margin: 0 0 10px 0;
+}
+
+.tableScroll {
+    max-height: 360px;
+    overflow: auto;
+    border: 1px solid #e9ecef;
+    border-radius: 6px;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.85rem;
+}
+
+.table th,
+.table td {
+    padding: 6px 10px;
+    border-bottom: 1px solid #e9ecef;
+    text-align: left;
+    white-space: nowrap;
+}
+
+.table th {
+    position: sticky;
+    top: 0;
+    background: #f8f9fa;
+    z-index: 1;
+}
+
+.errorRow {
+    background-color: #f8d7da;
+}
+
+.warningRow {
+    background-color: #fff3cd;
+}
+
+.issuesCell {
+    white-space: normal;
+    min-width: 220px;
+}
+
+.errorText {
+    color: #842029;
+    font-weight: 500;
+}
+
+.warningText {
+    color: #7a5b00;
+}

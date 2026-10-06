@@ -1,0 +1,169 @@
+.sidebar {
+  width: 230px;
+  flex-shrink: 0;
+  background-color: #09042e;
+  color: #e0e0e0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  position: relative;
+  z-index: 100;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.logoContainer {
+  background-color: #000000;
+  padding: 15px 10px;
+  flex-shrink: 0;
+}
+
+.logoLink {
+  text-decoration: none;
+  color: inherit;
+}
+
+.logo {
+  font-size: 1.6rem;
+  font-weight: bold;
+  text-align: center;
+  color: #FFFFFF;
+  line-height: 1.2;
+}
+
+.nav {
+  flex-grow: 1;
+  padding: 15px 10px;
+  overflow-y: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.nav::-webkit-scrollbar {
+  display: none;
+}
+
+.navList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.navItem {
+  margin-bottom: 8px;
+  list-style: none;
+  padding: 0;
+  position: relative; /* Needed for potential absolute positioning of popups if fixed isn't desired */
+}
+
+.navLink {
+  display: flex;
+  align-items: center;
+  padding: 10px 15px;
+  border-radius: 6px;
+  text-decoration: none;
+  color: #e0e0e0;
+  transition: background-color 0.2s ease, color 0.2s ease;
+  font-weight: 400;
+  cursor: pointer;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.navLink:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #FFFFFF;
+}
+
+.navIcon {
+  margin-right: 15px;
+  font-size: 1.2rem;
+  width: 20px;
+  text-align: center;
+  flex-shrink: 0;
+  color: #a0a0a0; /* Default icon color */
+  transition: color 0.2s ease;
+}
+
+.navLink:hover .navIcon {
+    color: #FFFFFF; /* Icon color on link hover */
+}
+
+.navItemSpan {
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+.popupCommon {
+  position: fixed;
+  left: 230px;
+  background-color: #1a1a1a;
+  border-radius: 6px;
+  padding: 10px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.4);
+  z-index: 1000;
+  min-width: 200px;
+  border: 1px solid #333;
+}
+
+.LeaveAttendancePopup {
+  top: 350px; /* Adjust as needed */
+}
+
+.PayrollPopup {
+  top: 150px; /* Adjust as needed */
+   max-height: calc(100vh - 250px); /* Example max height */
+   overflow-y: auto; /* Add scroll if content exceeds max height */
+    scrollbar-width: thin;
+    scrollbar-color: #555 #1a1a1a;
+}
+
+.PayrollPopup::-webkit-scrollbar {
+  width: 6px;
+}
+
+.PayrollPopup::-webkit-scrollbar-track {
+  background: #1a1a1a;
+  border-radius: 3px;
+}
+
+.PayrollPopup::-webkit-scrollbar-thumb {
+  background-color: #555;
+  border-radius: 3px;
+}
+
+
+.popupLink {
+  display: block;
+  padding: 9px 15px;
+  text-decoration: none;
+  color: #e0e0e0;
+  transition: background-color 0.2s ease, color 0.2s ease;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  white-space: nowrap;
+  margin-bottom: 4px;
+}
+
+.popupLink:last-child {
+  margin-bottom: 0;
+}
+
+.popupLink:hover {
+  background-color: #0c70fc;
+  color: #fff;
+}
+
+.navItemSelected .navLink {
+  background-color: #0c70fc;
+  color: #FFFFFF;
+  font-weight: 500;
+}
+
+.navItemSelected .navLink:hover {
+  background-color: #338dff;
+}
+
+.navItemSelected .navIcon {
+    color: #FFFFFF;
+}

@@ -1,0 +1,96 @@
+/* src/Components/Pages/Settings/SettingsForm.module.css */
+
+/* You can copy relevant styles from AddEmployeeFlow.module.css */
+/* Or create simpler ones if needed */
+
+.formContainer {
+    padding: 25px 30px;
+    max-width: 500px; /* Smaller width might be suitable */
+    margin: 40px auto; /* Center horizontally, more top margin */
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.formContainer h2 {
+    font-size: 1.5rem;
+    color: #333;
+    margin: 0 0 25px 0;
+    text-align: center;
+    font-weight: 600;
+}
+
+.formGroup {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px; /* Add space below group */
+}
+
+.label {
+    margin-bottom: 6px;
+    font-weight: 600;
+    color: #444;
+    font-size: 0.9rem;
+}
+
+.input {
+    padding: 10px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+    background-color: #fff;
+    color: #333;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    box-sizing: border-box;
+    width: 100%;
+    height: 40px;
+}
+.input:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.2);
+}
+
+.buttonGroup {
+    display: flex;
+    justify-content: flex-end; /* Just push buttons right */
+    gap: 10px;
+    margin-top: 25px;
+    padding-top: 15px;
+    border-top: 1px solid #eee;
+}
+
+.submitButton, .cancelButton {
+     border: none;
+     border-radius: 5px;
+     padding: 10px 20px;
+     cursor: pointer;
+     font-size: 1rem;
+     font-weight: 500;
+     transition: background-color 0.2s ease, transform 0.1s ease;
+}
+.submitButton:active, .cancelButton:active {
+     transform: translateY(1px);
+}
+
+.submitButton {
+     background-color: #007bff;
+     color: #fff;
+}
+.submitButton:hover {
+     background-color: #0056b3;
+}
+
+.cancelButton {
+     background-color: #6c757d;
+     color: #fff;
+}
+.cancelButton:hover {
+     background-color: #5a6268;
+}
+
+.errorMessage {
+    color: red;
+    font-size: 0.85rem;
+    margin-top: 5px;
+}

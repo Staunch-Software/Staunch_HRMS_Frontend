@@ -1,0 +1,134 @@
+.container {
+  padding: 30px 40px;
+  background-color: #ffffff;
+  border-radius: 6px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.09);
+  max-width: 700px;
+  margin: 2.5rem auto;
+  border: 1px solid #e0e0e0;
+}
+
+.title {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: #343a40;
+  margin: 0 0 8px 0;
+}
+
+.subtitle {
+  color: #6c757d;
+  font-size: 0.9rem;
+  margin: 0 0 15px 0;
+}
+
+.divider {
+  border: none;
+  height: 1px;
+  background-color: #e0e0e0;
+  margin-bottom: 25px;
+}
+
+.warning {
+  color: #856404;
+  background-color: #fff3cd;
+  border: 1px solid #ffeeba;
+  padding: 12px 18px;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  font-size: 0.9rem;
+}
+
+.errorMessage {
+  color: #dc3545;
+  background-color: #f8d7da;
+  border: 1px solid #f5c6cb;
+  padding: 12px 18px;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  font-size: 0.9rem;
+}
+
+.successMessage {
+  color: #155724;
+  background-color: #d4edda;
+  border: 1px solid #c3e6cb;
+  padding: 12px 18px;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  font-size: 0.9rem;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+}
+
+.label {
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: #555;
+  font-size: 0.9rem;
+}
+
+.required {
+  color: #dc3545;
+  font-weight: bold;
+  margin-left: 3px;
+}
+
+.hint {
+  font-size: 0.8rem;
+  color: #6c757d;
+  margin-top: 5px;
+}
+
+.input {
+  padding: 12px 15px;
+  border: 1px solid #ced4da;
+  border-radius: 6px;
+  font-size: 1rem;
+  color: #495057;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.input:focus {
+  outline: none;
+  border-color: #80bdff;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
+  padding-top: 20px;
+  border-top: 1px solid #e0e0e0;
+}
+
+.saveButton {
+  padding: 10px 22px;
+  border-radius: 6px;
+  border: 1px solid #007bff;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.saveButton:hover {
+  background-color: #0056b3;
+  border-color: #0056b3;
+}
+
+.saveButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
