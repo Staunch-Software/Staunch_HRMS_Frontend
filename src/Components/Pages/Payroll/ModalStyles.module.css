@@ -31,7 +31,9 @@
 .modalBody {
     padding: 30px 40px;
     overflow-y: auto; /* Enable scrolling for form content */
+    overflow-x: auto; /* Scroll wide content (e.g. tables) instead of forcing the modal wider than its container */
     flex-grow: 1; /* Allow body to take available space */
+    min-width: 0; /* Without this, a flex child wider than its content (like a wide table) stretches the whole modal instead of scrolling */
 }
 
 .errorTextModal {

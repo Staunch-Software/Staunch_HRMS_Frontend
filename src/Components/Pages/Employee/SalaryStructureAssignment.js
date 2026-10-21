@@ -18,13 +18,15 @@ import { employeeApiService } from "../../../services/employeeApiService";
 
 const todayIso = () => new Date().toISOString().slice(0, 10);
 
-const SalaryStructureAssignment = ({ employee, isOpen, onClose }) => {
+const SalaryStructureAssignment = ({ employee, isOpen, onClose, introText }) => {
   const [components, setComponents] = useState([]);
   const [assignments, setAssignments] = useState([]);
   const [overrides, setOverrides] = useState({});
+  const [selected, setSelected] = useState({});
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [savingCode, setSavingCode] = useState(null);
+  const [bulkSaving, setBulkSaving] = useState(false);
 
   const employeeId = employee?.id;
 
@@ -57,21 +59,49 @@ const SalaryStructureAssignment = ({ employee, isOpen, onClose }) => {
     return map;
   }, {});
 
-  const handleAssign = async (component) => {
-    setSavingCode(component.code);
-    setError("");
-    try {
-      const overrideValue = overrides[component.id];
-      await employeeApiService.assignSalaryComponent(employeeId, {
-        salaryComponentId: component.id,
-        valueOverride: overrideValue !== undefined && overrideValue !== "" ? overrideValue : null,
-        effectiveFrom: todayIso(),
+  const unassignedComponents = components.filter((c) => !assignmentByComponentId[c.id]);
+  const selectedIds = Object.keys(selected).filter((id) => selected[id]);
+  const allUnassignedSelected =
+    unassignedComponents.length > 0 && unassignedComponents.every((c) => selected[c.id]);
+
+  const toggleSelected = (componentId) => {
+    setSelected((prev) => ({ ...prev, [componentId]: !prev[componentId] }));
+  };
+
+  const toggleSelectAll = () => {
+    const next = {};
+    if (!allUnassignedSelected) {
+      unassignedComponents.forEach((c) => {
+        next[c.id] = true;
       });
-      await reload();
-    } catch (err) {
-      setError(err.message || `Failed to assign ${component.name}.`);
-    } finally {
-      setSavingCode(null);
+    }
+    setSelected(next);
+  };
+
+  const handleAssignSelected = async () => {
+    if (selectedIds.length === 0) return;
+    setBulkSaving(true);
+    setError("");
+    const failures = [];
+    for (const idStr of selectedIds) {
+      const id = Number(idStr);
+      const component = components.find((c) => c.id === id);
+      const overrideValue = overrides[id];
+      try {
+        await employeeApiService.assignSalaryComponent(employeeId, {
+          salaryComponentId: id,
+          valueOverride: overrideValue !== undefined && overrideValue !== "" ? overrideValue : null,
+          effectiveFrom: todayIso(),
+        });
+      } catch (err) {
+        failures.push(`${component?.name || id}: ${err.message}`);
+      }
+    }
+    setSelected({});
+    await reload();
+    setBulkSaving(false);
+    if (failures.length > 0) {
+      setError(`Some components could not be assigned: ${failures.join("; ")}`);
     }
   };
 
@@ -102,6 +132,7 @@ const SalaryStructureAssignment = ({ employee, isOpen, onClose }) => {
         </div>
 
         <div className={modalStyles.modalBody}>
+          {introText && <p className={styles.introText}>{introText}</p>}
           {error && <p className={modalStyles.errorTextModal}>{error}</p>}
           {loading ? (
             <p>Loading...</p>
@@ -109,6 +140,15 @@ const SalaryStructureAssignment = ({ employee, isOpen, onClose }) => {
             <table className={styles.table}>
               <thead>
                 <tr>
+                  <th>
+                    <input
+                      type="checkbox"
+                      checked={allUnassignedSelected}
+                      onChange={toggleSelectAll}
+                      disabled={unassignedComponents.length === 0}
+                      title="Select all unassigned components"
+                    />
+                  </th>
                   <th>Component</th>
                   <th>Type</th>
                   <th>Default Value</th>
@@ -123,6 +163,15 @@ const SalaryStructureAssignment = ({ employee, isOpen, onClose }) => {
                   const isAssigned = !!assignment;
                   return (
                     <tr key={component.id}>
+                      <td>
+                        {!isAssigned && (
+                          <input
+                            type="checkbox"
+                            checked={!!selected[component.id]}
+                            onChange={() => toggleSelected(component.id)}
+                          />
+                        )}
+                      </td>
                       <td>{component.name} <span className={styles.code}>({component.code})</span></td>
                       <td>{component.componentType}</td>
                       <td>{component.value ?? "—"}</td>
@@ -150,21 +199,13 @@ const SalaryStructureAssignment = ({ employee, isOpen, onClose }) => {
                         )}
                       </td>
                       <td>
-                        {isAssigned ? (
+                        {isAssigned && (
                           <button
                             className={styles.endButton}
                             disabled={savingCode === component.code}
                             onClick={() => handleEnd(assignment, component)}
                           >
                             End
-                          </button>
-                        ) : (
-                          <button
-                            className={styles.assignButton}
-                            disabled={savingCode === component.code}
-                            onClick={() => handleAssign(component)}
-                          >
-                            Assign
                           </button>
                         )}
                       </td>
@@ -178,7 +219,14 @@ const SalaryStructureAssignment = ({ employee, isOpen, onClose }) => {
 
         <div className={modalStyles.modalActions}>
           <button className={modalStyles.cancelButton} onClick={onClose}>
-            Close
+            {introText ? "Done" : "Close"}
+          </button>
+          <button
+            className={styles.assignButton}
+            disabled={selectedIds.length === 0 || bulkSaving}
+            onClick={handleAssignSelected}
+          >
+            {bulkSaving ? "Assigning..." : `Assign Selected (${selectedIds.length})`}
           </button>
         </div>
       </div>

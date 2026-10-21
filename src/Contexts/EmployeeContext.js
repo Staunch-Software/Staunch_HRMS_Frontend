@@ -53,19 +53,46 @@ export const EmployeeProvider = ({ children }) => {
       status: newEmployeeData.status || 'Active',
     };
 
-    // Fire-and-forget against the backend (kept synchronous at the call site
-    // so AddEmployeeFlow.js — out of scope for this phase — doesn't need to
-    // change how it calls addEmployee). Errors are surfaced via alert here,
-    // matching this context's existing error-handling style.
-    employeeApiService
+    // Returns the created employee so callers that need the new id (e.g. to
+    // immediately assign salary components) can await it; existing
+    // fire-and-forget callers are unaffected since they don't use the
+    // return value. Errors are surfaced via alert (existing style) and
+    // re-thrown so an awaiting caller can also react (e.g. skip a
+    // follow-up step) instead of only getting undefined.
+    return employeeApiService
       .addEmployee(submissionData)
       .then((createdEmployee) => {
         setEmployees((prevEmployees) => [...prevEmployees, createdEmployee]);
         console.log("CONTEXT (Employee): Added employee", createdEmployee);
+        return createdEmployee;
       })
       .catch((err) => {
         console.error("CONTEXT (Employee): Failed to add employee", err);
         alert(`Failed to add employee: ${err.message}`);
+        throw err;
+      });
+  }, [employees]);
+
+  const updateEmployee = useCallback((employeeIdentifier, employeeData) => {
+    const target = employees.find(
+      (emp) => emp.id === employeeIdentifier || emp.employeeId === employeeIdentifier
+    );
+    if (!target) {
+      console.warn(`CONTEXT (Employee): Employee ${employeeIdentifier} not found for update.`);
+      return Promise.resolve(undefined);
+    }
+    return employeeApiService
+      .updateEmployee(target.id, employeeData)
+      .then((updatedEmployee) => {
+        setEmployees((prevEmployees) =>
+          prevEmployees.map((emp) => (emp.id === target.id ? updatedEmployee : emp))
+        );
+        return updatedEmployee;
+      })
+      .catch((err) => {
+        console.error("CONTEXT (Employee): Failed to update employee", err);
+        alert(`Failed to update employee: ${err.message}`);
+        throw err;
       });
   }, [employees]);
 
@@ -133,6 +160,7 @@ export const EmployeeProvider = ({ children }) => {
   const value = useMemo(() => ({
     employees,
     addEmployee,
+    updateEmployee,
     updateEmployeeStatus,
     deleteEmployee,
     getEmployeeById,
@@ -141,6 +169,7 @@ export const EmployeeProvider = ({ children }) => {
   }), [
     employees,
     addEmployee,
+    updateEmployee,
     updateEmployeeStatus,
     deleteEmployee,
     getEmployeeById,

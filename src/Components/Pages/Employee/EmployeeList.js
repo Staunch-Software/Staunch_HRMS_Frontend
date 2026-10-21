@@ -221,6 +221,15 @@ const EmployeeList = () => {
             </button>
             <button
               className={styles.actionLink}
+              onClick={() => navigate(`/app/employee/edit/${employee.id}`)}
+              aria-label={`Edit ${formatName(employee)}`}
+              title="Edit employee details"
+              style={{ marginLeft: 8 }}
+            >
+              Edit
+            </button>
+            <button
+              className={styles.actionLink}
               onClick={() => setSalaryStructureEmployee(employee)}
               aria-label={`Salary structure for ${formatName(employee)}`}
               title="Assign salary components"

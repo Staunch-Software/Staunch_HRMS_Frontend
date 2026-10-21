@@ -68,6 +68,7 @@ function App() {
                 <Route path="department" element={<DepartmentList />} />
                 <Route path="designation" element={<DesignationList />} />
                 <Route path="employee/add" element={<AddEmployeeFlow />} />
+                <Route path="employee/edit/:id" element={<AddEmployeeFlow />} />
                 <Route path="locations/add" element={<AddLocationPage />} />
                 <Route
                   path="designation/add"

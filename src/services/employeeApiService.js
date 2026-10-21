@@ -139,6 +139,35 @@ export const employeeApiService = {
     return clone(toDenormalizedEmployee(created, lookups));
   },
 
+  updateEmployee: async (employeeId, employeeData) => {
+    const lookups = await fetchOrgLookups();
+    const updated = await apiPutJson(
+      `/employees/${employeeId}`,
+      toApiEmployeePayload(employeeData, lookups.locations)
+    );
+
+    // Same as addEmployee: persist bank details alongside if present, so an
+    // edit that changes bank info isn't silently dropped.
+    if (employeeData.bankName && employeeData.accountHolderName && employeeData.accountNumber && employeeData.ifscCode) {
+      try {
+        await apiPutJson(`/employees/${employeeId}/bank-account`, {
+          bank_name: employeeData.bankName,
+          account_holder_name: employeeData.accountHolderName,
+          account_number: employeeData.accountNumber,
+          ifsc_code: employeeData.ifscCode,
+          branch_name: employeeData.branchName || null,
+          account_type: employeeData.accountType || null,
+          is_primary: true,
+          is_active: true,
+        });
+      } catch (e) {
+        console.error("Employee updated, but saving bank account failed:", e);
+      }
+    }
+
+    return clone(toDenormalizedEmployee(updated, lookups));
+  },
+
   updateEmployeeStatus: async (employeeId, newStatus) => {
     const updated = await apiPatchJson(`/employees/${employeeId}/status`, { status: newStatus });
     return clone(updated);
